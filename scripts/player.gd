@@ -1,28 +1,70 @@
 extends CharacterBody2D
 
+const SPEED = 500.0
+const JUMP_VELOCITY = 600.0
+const PUSH_FORCE = 60.0
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
+	
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		calculate_gravity(delta)
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		jump()
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+	if Input.is_action_pressed("Gravity"):
+		change_up_direction()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		movement()
+	
 	move_and_slide()
+	calculate_push()
+
+## Add the gravity based on up_direction vector.
+func calculate_gravity(delta):
+	velocity.y += gravity * (up_direction.y) * delta
+	velocity.x += gravity * (up_direction.x) * delta
+
+## Handle jump based on up_direction vector.
+func jump():
+		velocity.y = JUMP_VELOCITY * (up_direction.y)
+		velocity.x = JUMP_VELOCITY * (up_direction.x)
+
+## Change direction based on input.
+func change_up_direction():
+	# I changed the order of these parameters to avoid calculations
+	var newUpDirection = Input.get_vector("Right", "Left", "Down", "Up")
+	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.upDirection:
+		set_up_direction(newUpDirection)
+		GravityInformation.update_up_direction(newUpDirection)
+
+## Handle character movement.
+func movement():
+	# Get the input direction and handle the movement/deceleration
+	var direction = Input.get_axis("Left", "Right")
+	var direction_vertical_movement = 1
+	
+	if up_direction.y != 0:
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+	else:
+		if up_direction == Vector2.LEFT:
+			direction_vertical_movement = -1
+		else:
+			direction_vertical_movement = 1
+			
+		if direction:
+			velocity.y = direction * direction_vertical_movement * SPEED
+		else:
+			velocity.y = move_toward(velocity.y, 0, SPEED)
+
+## Calculate push force on RigidBody2d objects that the player collide with
+func calculate_push():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider() is RigidBody2D:
+			collision.get_collider().apply_central_impulse(-collision.get_normal() * PUSH_FORCE)

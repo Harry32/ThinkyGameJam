@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dup7d17q22x3s"]
+
+[ext_resource type="PackedScene" uid="uid://cyywepnoyurvi" path="res://scenes/objects/object.tscn" id="1_jo6b3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vstl0"]
+size = Vector2(40, 40)
+
+[node name="Box" instance=ExtResource("1_jo6b3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_vstl0")
+
+[node name="ColorRect" type="ColorRect" parent="." index="1"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.415686, 0.415686, 0.415686, 1)

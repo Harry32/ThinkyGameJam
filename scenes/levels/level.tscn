@@ -1,23 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8y7wph201vx4"]
+[gd_scene load_steps=5 format=3 uid="uid://c8y7wph201vx4"]
 
 [ext_resource type="PackedScene" uid="uid://crdgt41diya2q" path="res://scenes/player/player.tscn" id="1_2inqr"]
+[ext_resource type="PackedScene" uid="uid://dup7d17q22x3s" path="res://scenes/objects/box.tscn" id="2_vth67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d0cl"]
-size = Vector2(1202, 115)
+size = Vector2(1960, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5y0n"]
+size = Vector2(114.5, 1101)
 
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_2inqr")]
-position = Vector2(573, 475)
+position = Vector2(946, 908)
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 580)
+[node name="Walls" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(601, 57.5)
+[node name="DownWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 1018)
+
+[node name="DownCollision" type="CollisionShape2D" parent="Walls/DownWall"]
+position = Vector2(980, 57.5)
 shape = SubResource("RectangleShape2D_3d0cl")
 
-[node name="ColorRect" type="ColorRect" parent="Floor"]
-offset_right = 1202.0
+[node name="DownRect" type="ColorRect" parent="Walls/DownWall"]
+offset_right = 1960.0
 offset_bottom = 115.0
 color = Color(0.85098, 0.85098, 0.85098, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="UpWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -52)
+
+[node name="UpCollision" type="CollisionShape2D" parent="Walls/UpWall"]
+position = Vector2(980, 57.5)
+shape = SubResource("RectangleShape2D_3d0cl")
+
+[node name="UpRect" type="ColorRect" parent="Walls/UpWall"]
+offset_right = 1960.0
+offset_bottom = 115.0
+color = Color(0.85098, 0.85098, 0.85098, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-55, 0)
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(57.75, 550)
+shape = SubResource("RectangleShape2D_w5y0n")
+
+[node name="LeftRect" type="ColorRect" parent="Walls/LeftWall"]
+offset_right = 115.0
+offset_bottom = 1100.0
+color = Color(0.85098, 0.85098, 0.85098, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1864, 0)
+
+[node name="RightCollision" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(58, 550)
+shape = SubResource("RectangleShape2D_w5y0n")
+
+[node name="RightRect" type="ColorRect" parent="Walls/RightWall"]
+offset_right = 115.0
+offset_bottom = 1100.0
+color = Color(0.85098, 0.85098, 0.85098, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Box" parent="." instance=ExtResource("2_vth67")]
+position = Vector2(1533, 476)
+collision_layer = 1
+collision_mask = 1
+gravity_scale = 1.0
