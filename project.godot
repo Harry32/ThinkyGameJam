@@ -30,7 +30,8 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://graphics/": "purple",
 "res://scenes/": "blue",
-"res://scripts/": "teal"
+"res://scripts/": "teal",
+"res://shaders/": "pink"
 }
 
 [input]

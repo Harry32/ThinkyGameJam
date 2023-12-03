@@ -5,8 +5,9 @@ const JUMP_VELOCITY = 600.0
 const PUSH_FORCE = 60.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
+var external_gravity : bool = false
 
-	
+
 func _physics_process(delta):
 	if not is_on_floor():
 		calculate_gravity(delta)
@@ -50,7 +51,8 @@ func movement():
 		if direction:
 			velocity.x = direction * SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			if not external_gravity:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
 		if up_direction == Vector2.LEFT:
 			direction_vertical_movement = -1
@@ -60,7 +62,8 @@ func movement():
 		if direction:
 			velocity.y = direction * direction_vertical_movement * SPEED
 		else:
-			velocity.y = move_toward(velocity.y, 0, SPEED)
+			if not external_gravity:
+				velocity.y = move_toward(velocity.y, 0, SPEED)
 
 ## Calculate push force on RigidBody2d objects that the player collide with
 func calculate_push():
@@ -68,3 +71,11 @@ func calculate_push():
 		var collision = get_slide_collision(i)
 		if collision.get_collider() is RigidBody2D:
 			collision.get_collider().apply_central_impulse(-collision.get_normal() * PUSH_FORCE)
+
+## Toggle external gravity flag
+func toggle_external_gravity():
+	external_gravity = not external_gravity
+
+## Simulate RigidBody2d apply_central_impulse function
+func apply_central_impulse(impulse: Vector2):
+	velocity += impulse
