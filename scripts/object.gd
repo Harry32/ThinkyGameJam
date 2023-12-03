@@ -9,7 +9,7 @@ func _ready():
 	gravity_vector.y = -gravity * mass
 	gravity_scale = 0
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	apply_central_force(gravity_vector)
 
 ## Change gravity direction upon signal

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8y7wph201vx4"]
+[gd_scene load_steps=8 format=3 uid="uid://c8y7wph201vx4"]
 
 [ext_resource type="PackedScene" uid="uid://crdgt41diya2q" path="res://scenes/player/player.tscn" id="1_2inqr"]
+[ext_resource type="PackedScene" uid="uid://vstxymajgmdd" path="res://scenes/mechanics/door.tscn" id="2_rlsdc"]
 [ext_resource type="PackedScene" uid="uid://dup7d17q22x3s" path="res://scenes/objects/box.tscn" id="2_vth67"]
+[ext_resource type="PackedScene" uid="uid://p45e7cpriw7g" path="res://scenes/mechanics/simple_button.tscn" id="4_bbx1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d0cl"]
 size = Vector2(1960, 115)
@@ -9,10 +11,16 @@ size = Vector2(1960, 115)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5y0n"]
 size = Vector2(114.5, 1101)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aev3"]
+size = Vector2(115, 850)
+
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_2inqr")]
 position = Vector2(946, 908)
+
+[node name="Door" parent="." instance=ExtResource("2_rlsdc")]
+position = Vector2(1900, 918)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -58,13 +66,13 @@ metadata/_edit_use_anchors_ = true
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2(1864, 0)
 
-[node name="RightCollision" type="CollisionShape2D" parent="Walls/RightWall"]
-position = Vector2(58, 550)
-shape = SubResource("RectangleShape2D_w5y0n")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(57.5, 425)
+shape = SubResource("RectangleShape2D_3aev3")
 
 [node name="RightRect" type="ColorRect" parent="Walls/RightWall"]
 offset_right = 115.0
-offset_bottom = 1100.0
+offset_bottom = 850.0
 color = Color(0.85098, 0.85098, 0.85098, 1)
 metadata/_edit_use_anchors_ = true
 
@@ -73,3 +81,9 @@ position = Vector2(1533, 476)
 collision_layer = 1
 collision_mask = 1
 gravity_scale = 1.0
+
+[node name="SimpleButton" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_bbx1g")]
+position = Vector2(1524, 78)
+rotation = 3.14159
+scale = Vector2(1.5, 1.5)
+door = NodePath("../Door")

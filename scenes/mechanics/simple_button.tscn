@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://p45e7cpriw7g"]
+
+[ext_resource type="Script" path="res://scripts/simple_button.gd" id="1_djjcu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibixc"]
+size = Vector2(100, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkse4"]
+size = Vector2(80, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_353nd"]
+size = Vector2(80, 3)
+
+[node name="SimpleButton" type="StaticBody2D"]
+script = ExtResource("1_djjcu")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 40.0
+color = Color(0.980392, 0.494118, 0.443137, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -50.0
+offset_top = -10.0
+offset_right = 50.0
+offset_bottom = 10.0
+color = Color(0.556863, 0.556863, 0.556863, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ibixc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_kkse4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -21.5)
+shape = SubResource("RectangleShape2D_353nd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
