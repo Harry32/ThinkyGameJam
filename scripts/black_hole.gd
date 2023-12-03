@@ -6,7 +6,7 @@ var affectedBodies = []
 
 
 ## Apply impulses to every object in the field
-func _physics_process(delta):
+func _physics_process(_delta):
 	for i in affectedBodies.size():
 		var direction = (position - affectedBodies[i].position).normalized()
 		affectedBodies[i].apply_central_impulse(direction * gravityForce)

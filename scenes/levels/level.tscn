@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8y7wph201vx4"]
+[gd_scene load_steps=8 format=3 uid="uid://c8y7wph201vx4"]
 
 [ext_resource type="PackedScene" uid="uid://crdgt41diya2q" path="res://scenes/player/player.tscn" id="1_2inqr"]
 [ext_resource type="PackedScene" uid="uid://vstxymajgmdd" path="res://scenes/mechanics/door.tscn" id="2_rlsdc"]
 [ext_resource type="PackedScene" uid="uid://dup7d17q22x3s" path="res://scenes/objects/box.tscn" id="2_vth67"]
 [ext_resource type="PackedScene" uid="uid://p45e7cpriw7g" path="res://scenes/mechanics/simple_button.tscn" id="4_bbx1g"]
-[ext_resource type="PackedScene" uid="uid://cqb6p78klute2" path="res://scenes/mechanics/black_hole.tscn" id="5_veh0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d0cl"]
 size = Vector2(1960, 115)
@@ -88,6 +87,3 @@ position = Vector2(1524, 78)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
 door = NodePath("../Door")
-
-[node name="BlackHole" parent="." instance=ExtResource("5_veh0e")]
-position = Vector2(1236, 502)
