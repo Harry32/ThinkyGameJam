@@ -1,9 +1,9 @@
 extends Area2D
 
-var gravityForce : float = 40
+## Set the force of the black hole's gravity field
+@export_range(0, 500) var gravityForce : float = 40
 
 var affectedBodies = []
-
 
 ## Apply impulses to every object in the field
 func _physics_process(_delta):
