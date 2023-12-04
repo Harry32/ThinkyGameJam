@@ -12,6 +12,8 @@ size = Vector2(80, 10)
 size = Vector2(80, 3)
 
 [node name="SimpleButton" type="StaticBody2D"]
+collision_layer = 5
+collision_mask = 3
 script = ExtResource("1_djjcu")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
