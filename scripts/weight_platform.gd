@@ -25,6 +25,7 @@ func _physics_process(delta):
 	position = position.lerp(destinationPosition, 0.5 * delta)
 
 
+## At every new RigidBody2D on the platform the currentWeight is updated
 func _on_area_2d_body_entered(body):
 	var preWeight = currentWeight
 	if body is RigidBody2D:
@@ -37,6 +38,7 @@ func _on_area_2d_body_entered(body):
 			move_platform(movementDistance)
 
 
+## At every new RigidBody2D that leaves the platform the currentWeight is updated
 func _on_area_2d_body_exited(body):
 	var preWeight = currentWeight
 	if body is RigidBody2D:
@@ -49,6 +51,7 @@ func _on_area_2d_body_exited(body):
 			move_platform(-movementDistance)
 
 
+## A tween is setted to gradually change destinationPosition
 func move_platform(distance: float):
 	var move_position = Vector2(originalPosition.x, originalPosition.y + distance)
 	
@@ -61,10 +64,13 @@ func move_platform(distance: float):
 	tween.tween_property(self, "destinationPosition", move_position, duration)
 
 
+## Start and wait for a timer. It's used so bouncing box do not change the platform's movement
 func wait_time():
 	$Timer.start()
 	await $Timer.timeout
 
+
+## Update label color and text
 func update_label():
 	var value = necessaryWeigth - currentWeight
 	
