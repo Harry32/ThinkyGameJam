@@ -9,6 +9,10 @@ var external_gravity : bool = false
 var currentAngle : float = 0
 
 
+func _ready():
+	GravityInformation.connect("up_direction_change", update_up_direction)
+
+
 func _physics_process(delta):
 	if not is_on_floor():
 		calculate_gravity(delta)
@@ -41,9 +45,7 @@ func jump():
 func change_up_direction():
 	# I changed the order of these parameters to avoid calculations
 	var newUpDirection = Input.get_vector("Right", "Left", "Down", "Up")
-	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.upDirection:
-		set_up_direction(newUpDirection)
-		rotate_player(newUpDirection)
+	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.get_up_direction():
 		GravityInformation.update_up_direction(newUpDirection)
 
 
@@ -93,5 +95,17 @@ func apply_central_impulse(impulse: Vector2):
 ## Rotate the player to keep the head up
 func rotate_player(newUpDirection: Vector2):
 	var angle = $TopRayCast.target_position.angle_to(newUpDirection)
-	var tween = create_tween()
-	tween.tween_property(self, "rotation", angle, 0.3)
+	if angle != currentAngle:
+		currentAngle = angle
+		var tween = create_tween()
+		tween.tween_property(self, "rotation", angle, 0.3)
+
+
+## Update up direction
+func update_up_direction(upDirection: Vector2):
+	set_up_direction(upDirection)
+	rotate_player(upDirection)
+
+
+func set_external_gravity(upDirection: Vector2):
+	update_up_direction(upDirection)
