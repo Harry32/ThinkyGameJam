@@ -26,11 +26,5 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.654902, 0.996078, 0.631373, 1)
 
-[node name="FrontMarker" type="Marker2D" parent="."]
-position = Vector2(1, 0)
-
-[node name="FrontRayCast" type="RayCast2D" parent="."]
-target_position = Vector2(50, 0)
-
 [node name="TopRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, -50)

@@ -12,7 +12,7 @@ size = Vector2(80, 10)
 size = Vector2(80, 3)
 
 [node name="SimpleButton" type="StaticBody2D"]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_djjcu")
 
@@ -37,6 +37,8 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_kkse4")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -21.5)

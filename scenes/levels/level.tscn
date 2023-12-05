@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8y7wph201vx4"]
+[gd_scene load_steps=8 format=3 uid="uid://c8y7wph201vx4"]
 
 [ext_resource type="PackedScene" uid="uid://crdgt41diya2q" path="res://scenes/player/player.tscn" id="1_2inqr"]
 [ext_resource type="Texture2D" uid="uid://dx18e4piaqadk" path="res://graphics/pillars.png" id="1_hi3so"]
 [ext_resource type="PackedScene" uid="uid://vstxymajgmdd" path="res://scenes/mechanics/door.tscn" id="2_rlsdc"]
+[ext_resource type="PackedScene" uid="uid://dguxwd8kbvmuh" path="res://scenes/objects/box.tscn" id="4_13b0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d0cl"]
 size = Vector2(1960, 115)
@@ -80,3 +81,6 @@ offset_right = 115.0
 offset_bottom = 850.0
 color = Color(0.85098, 0.85098, 0.85098, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="Box" parent="." instance=ExtResource("4_13b0s")]
+position = Vector2(651, 714)
