@@ -5,6 +5,7 @@ extends Area2D
 
 var affectedBodies = []
 
+
 ## Apply impulses to every object in the field
 func _physics_process(_delta):
 	for i in affectedBodies.size():
@@ -18,7 +19,7 @@ func _on_body_entered(body):
 		affectedBodies.append(body)
 		if body.name == "Player":
 			body.toggle_external_gravity()
-		
+
 
 ## Remove object to array
 func _on_body_exited(body):

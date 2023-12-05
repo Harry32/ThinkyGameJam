@@ -6,6 +6,7 @@ const PUSH_FORCE = 60.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
 var external_gravity : bool = false
+var currentAngle : float = 0
 
 
 func _physics_process(delta):
@@ -23,15 +24,18 @@ func _physics_process(delta):
 	move_and_slide()
 	calculate_push()
 
+
 ## Add the gravity based on up_direction vector.
 func calculate_gravity(delta):
 	velocity.y += gravity * (up_direction.y) * delta
 	velocity.x += gravity * (up_direction.x) * delta
 
+
 ## Handle jump based on up_direction vector.
 func jump():
 		velocity.y = JUMP_VELOCITY * (up_direction.y)
 		velocity.x = JUMP_VELOCITY * (up_direction.x)
+
 
 ## Change direction based on input.
 func change_up_direction():
@@ -39,7 +43,9 @@ func change_up_direction():
 	var newUpDirection = Input.get_vector("Right", "Left", "Down", "Up")
 	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.upDirection:
 		set_up_direction(newUpDirection)
+		rotate_player(newUpDirection)
 		GravityInformation.update_up_direction(newUpDirection)
+
 
 ## Handle character movement.
 func movement():
@@ -65,6 +71,7 @@ func movement():
 			if not external_gravity:
 				velocity.y = move_toward(velocity.y, 0, SPEED)
 
+
 ## Calculate push force on RigidBody2d objects that the player collide with
 func calculate_push():
 	for i in get_slide_collision_count():
@@ -72,10 +79,19 @@ func calculate_push():
 		if collision.get_collider() is RigidBody2D:
 			collision.get_collider().apply_central_impulse(-collision.get_normal() * PUSH_FORCE)
 
+
 ## Toggle external gravity flag
 func toggle_external_gravity():
 	external_gravity = not external_gravity
 
+
 ## Simulate RigidBody2d apply_central_impulse function
 func apply_central_impulse(impulse: Vector2):
 	velocity += impulse
+
+
+## Rotate the player to keep the head up
+func rotate_player(newUpDirection: Vector2):
+	var angle = $TopRayCast.target_position.angle_to(newUpDirection)
+	var tween = create_tween()
+	tween.tween_property(self, "rotation", angle, 0.3)
