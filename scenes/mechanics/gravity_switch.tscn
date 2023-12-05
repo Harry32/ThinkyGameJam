@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://rlgyfwvht71v"]
+
+[ext_resource type="Script" path="res://scripts/gravity_switch.gd" id="1_asktq"]
+[ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="1_dpxdo"]
+[ext_resource type="Script" path="res://scripts/switch_ball.gd" id="1_ll8h6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4so"]
+size = Vector2(90, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_525yb"]
+size = Vector2(20, 163)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odktn"]
+size = Vector2(18, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4naf6"]
+size = Vector2(50, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpvme"]
+size = Vector2(50, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fp0oy"]
+
+[node name="GravitySwitch" type="StaticBody2D"]
+position = Vector2(0, 89)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_asktq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8l4so")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -183)
+shape = SubResource("RectangleShape2D_8l4so")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-35, -91.5)
+shape = SubResource("RectangleShape2D_525yb")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(35, -91.5)
+shape = SubResource("RectangleShape2D_525yb")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(-54, -89)
+shape = SubResource("RectangleShape2D_odktn")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(54, -89)
+shape = SubResource("RectangleShape2D_odktn")
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Box"]
+offset_left = -45.0
+offset_top = -10.0
+offset_right = 45.0
+offset_bottom = 10.0
+color = Color(0.603922, 0.603922, 0.603922, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Box"]
+offset_left = -45.0
+offset_top = -193.0
+offset_right = 45.0
+offset_bottom = -173.0
+color = Color(0.603922, 0.603922, 0.603922, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="Box"]
+offset_left = -45.0
+offset_top = -173.0
+offset_right = -25.0
+offset_bottom = -10.0
+color = Color(0.603922, 0.603922, 0.603922, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="Box"]
+offset_left = 25.0
+offset_top = -173.0
+offset_right = 45.0
+offset_bottom = -10.0
+color = Color(0.603922, 0.603922, 0.603922, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LightL" type="ColorRect" parent="Box"]
+offset_left = -63.0
+offset_top = -109.0
+offset_right = -45.0
+offset_bottom = -69.0
+color = Color(1, 0.435294, 0.439216, 1)
+
+[node name="LightR" type="ColorRect" parent="Box"]
+offset_left = 45.0
+offset_top = -109.0
+offset_right = 63.0
+offset_bottom = -69.0
+color = Color(1, 0.435294, 0.439216, 1)
+
+[node name="OnArea" type="Area2D" parent="."]
+position = Vector2(0, -183)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnArea"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_4naf6")
+
+[node name="OffArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OffArea"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_hpvme")
+
+[node name="SwitchBall" type="RigidBody2D" parent="."]
+position = Vector2(0, -89)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_ll8h6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchBall"]
+scale = Vector2(1.52, 1.52)
+shape = SubResource("CircleShape2D_fp0oy")
+
+[node name="Sprite2D" type="Sprite2D" parent="SwitchBall"]
+modulate = Color(0.937255, 0.427451, 0.898039, 1)
+texture = ExtResource("1_dpxdo")
+
+[connection signal="body_entered" from="OnArea" to="." method="_on_on_area_body_entered"]
+[connection signal="body_entered" from="OffArea" to="." method="_on_off_area_body_entered"]

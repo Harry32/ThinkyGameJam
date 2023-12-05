@@ -256,7 +256,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1225.79, -13.7227)
 mode = 1
 flags/light_only = false
 nodes/vertex/2/node = SubResource("VisualShaderNodeFloatConstant_k8k0q")
