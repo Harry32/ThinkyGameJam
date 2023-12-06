@@ -4,6 +4,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
 var gravity_vector: Vector2 = Vector2(0, 0)
 var external_gravity : bool = false
 var teleportPosition: Vector2
+var previous_velocity: float
+var actual_velocity: float
 
 
 func _ready():
@@ -15,11 +17,18 @@ func _ready():
 
 func _physics_process(_delta):
 	apply_central_force(gravity_vector)
-
+	
 func _integrate_forces(state):
 	if teleportPosition != Vector2.ZERO:
 		state.transform.origin = teleportPosition
 		teleportPosition = Vector2.ZERO
+	
+	previous_velocity = actual_velocity
+	actual_velocity = state.linear_velocity.length()
+	
+func get_velocity():
+	return abs(previous_velocity - actual_velocity)
+
 
 ## Update up direction if the gravity is no changed by externals origins
 func change_up_direction(upDirection: Vector2):

@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxr5pv4tcmwfk"]
+
+[ext_resource type="Script" path="res://scripts/destructible_cover.gd" id="1_4ic0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr18e"]
+size = Vector2(96, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxrvw"]
+size = Vector2(39.8082, 46.7692)
+
+[node name="DestructibleCover" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_4ic0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 0)
+shape = SubResource("RectangleShape2D_pr18e")
+
+[node name="CoverHitArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CoverHitArea"]
+position = Vector2(5.96046e-07, 1.96695e-06)
+scale = Vector2(2.46181, 2.09539)
+shape = SubResource("RectangleShape2D_nxrvw")
+
+[node name="CoverShape" type="Node2D" parent="."]
+
+[node name="Glass" type="ColorRect" parent="CoverShape"]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+color = Color(0.780392, 1, 1, 0.47451)
+
+[node name="Reflexes" type="Node2D" parent="CoverShape"]
+
+[node name="ColorRect3" type="ColorRect" parent="CoverShape/Reflexes"]
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 40.4
+offset_bottom = 48.0
+rotation = 0.785398
+color = Color(1, 1, 1, 0.568627)
+
+[node name="ColorRect2" type="ColorRect" parent="CoverShape/Reflexes"]
+offset_left = -10.0
+offset_top = -37.0
+offset_right = -9.6
+offset_bottom = 3.0
+rotation = 0.785398
+color = Color(1, 1, 1, 0.568627)
+
+[node name="ColorRect4" type="ColorRect" parent="CoverShape/Reflexes"]
+offset_left = 28.0
+offset_top = -28.0
+offset_right = 28.4
+offset_bottom = 52.0
+rotation = 0.785398
+color = Color(1, 1, 1, 0.568627)
+
+[node name="Borders" type="Node2D" parent="CoverShape"]
+
+[node name="ColorRect2" type="ColorRect" parent="CoverShape/Borders"]
+offset_left = -47.0
+offset_top = -47.0
+offset_right = 48.0
+offset_bottom = -46.0
+rotation = 1.5708
+color = Color(1, 1, 1, 0.407843)
+
+[node name="ColorRect3" type="ColorRect" parent="CoverShape/Borders"]
+offset_left = 48.0
+offset_top = -47.0
+offset_right = 143.0
+offset_bottom = -46.0
+rotation = 1.5708
+color = Color(1, 1, 1, 0.407843)
+
+[node name="ColorRect" type="ColorRect" parent="CoverShape/Borders"]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = -47.0
+color = Color(1, 1, 1, 0.407843)
+
+[node name="ColorRect4" type="ColorRect" parent="CoverShape/Borders"]
+offset_left = -47.0
+offset_top = 47.0
+offset_right = 47.0
+offset_bottom = 48.0
+color = Color(1, 1, 1, 0.407843)
+
+[connection signal="body_entered" from="CoverHitArea" to="." method="_on_cover_hit_area_body_entered"]
