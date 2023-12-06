@@ -70,6 +70,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2(1864, 0)
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
 position = Vector2(57.5, 425)

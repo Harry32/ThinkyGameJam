@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqb6p78klute2"]
+[gd_scene load_steps=8 format=3 uid="uid://cqb6p78klute2"]
 
 [ext_resource type="Script" path="res://scripts/black_hole.gd" id="1_5ur3y"]
 [ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="1_yw5gy"]
-[ext_resource type="Texture2D" uid="uid://dx18e4piaqadk" path="res://graphics/pillars.png" id="2_doah8"]
 [ext_resource type="Shader" uid="uid://naad70io3bg" path="res://shaders/black_hole.tres" id="3_d2nhh"]
 
 [sub_resource type="Curve" id="Curve_0pce4"]
@@ -25,11 +24,6 @@ radius = 211.0
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_5ur3y")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_doah8")
-metadata/_edit_lock_ = true
 
 [node name="Effect" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
