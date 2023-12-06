@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://nuh6mlfa0xo2"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_ykxoi"]
+[ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="2_0yy7l"]
+[ext_resource type="PackedScene" uid="uid://bhoiqqokfqnm7" path="res://scenes/ui/pause_overlay.tscn" id="3_pvuds"]
+
+[node name="Game" type="Node"]
+process_mode = 3
+script = ExtResource("1_ykxoi")
+
+[node name="Level" parent="." instance=ExtResource("2_0yy7l")]
+
+[node name="PauseOverlay" parent="." instance=ExtResource("3_pvuds")]
+visible = false
