@@ -5,6 +5,7 @@ const JUMP_VELOCITY = 600.0
 const PUSH_FORCE = 60.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
+var block_deceleration : bool = false
 var external_gravity : bool = false
 var currentAngle : float = 0
 
@@ -59,7 +60,7 @@ func movement():
 		if direction:
 			velocity.x = direction * SPEED
 		else:
-			if not external_gravity:
+			if not block_deceleration:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
 		if up_direction == Vector2.LEFT:
@@ -70,7 +71,7 @@ func movement():
 		if direction:
 			velocity.y = direction * direction_vertical_movement * SPEED
 		else:
-			if not external_gravity:
+			if not block_deceleration:
 				velocity.y = move_toward(velocity.y, 0, SPEED)
 
 
@@ -84,7 +85,7 @@ func calculate_push():
 
 ## Toggle external gravity flag
 func toggle_external_gravity():
-	external_gravity = not external_gravity
+	block_deceleration = not block_deceleration
 
 
 ## Simulate RigidBody2d apply_central_impulse function
@@ -101,11 +102,20 @@ func rotate_player(newUpDirection: Vector2):
 		tween.tween_property(self, "rotation", angle, 0.3)
 
 
-## Update up direction
+## Update up direction if the gravity is no changed by externals origins
 func update_up_direction(upDirection: Vector2):
-	set_up_direction(upDirection)
-	rotate_player(upDirection)
+	if not external_gravity:
+		set_up_direction(upDirection)
+		rotate_player(upDirection)
 
 
+## Update direction and mark as external gravity
 func set_external_gravity(upDirection: Vector2):
 	update_up_direction(upDirection)
+	external_gravity = true
+
+
+## Mark as global gravity and update direction
+func set_global_gravity():
+	external_gravity = false
+	update_up_direction(GravityInformation.get_up_direction())

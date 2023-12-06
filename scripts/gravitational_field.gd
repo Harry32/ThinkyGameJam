@@ -1,19 +1,22 @@
 extends Area2D
 
+var gravityValue = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
+var direction : Vector2
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	var newDirection = $RayCast2D.target_position.rotated(rotation)
+	
+	direction.x = snapped(newDirection.x, 0.0001)
+	direction.y = snapped(newDirection.y, 0.0001)
+	
+	$Particles.gravity = direction * gravityValue
+	$Particles.emitting = true
 
 
 func _on_body_entered(body):
-	body.set_external_gravity($RayCast2D.target_position)
+	body.set_external_gravity(direction)
 
 
 func _on_body_exited(body):
-	body.set_external_gravity(GravityInformation.get_up_direction())
+	body.set_global_gravity()

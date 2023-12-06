@@ -28,3 +28,4 @@ color = Color(0.654902, 0.996078, 0.631373, 1)
 
 [node name="TopRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, -50)
+collide_with_bodies = false

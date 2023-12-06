@@ -1,0 +1,39 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://bc36nu7w73di8"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_c75vo"]
+expanded_output_ports = [0]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_h2l0a"]
+function = 31
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void fragment() {
+// Input:2
+	vec2 n_out2p0 = UV;
+	float n_out2p2 = n_out2p0.g;
+
+
+// FloatFunc:3
+	float n_out3p0 = 1.0 - n_out2p2;
+
+
+// Output:0
+	COLOR.a = n_out3p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_c75vo")
+nodes/fragment/2/position = Vector2(-340, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatFunc_h2l0a")
+nodes/fragment/3/position = Vector2(120, 180)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 2, 2, 3, 0)
