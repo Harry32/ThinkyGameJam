@@ -1,26 +1,23 @@
 extends StaticBody2D
 
-var closedPosition : Vector2
-var state : String = "Closed"
-
-
 func _ready():
-	closedPosition = position
-
-
-func _process(_delta):
-	if state == "Closed" and position.y != closedPosition.y:
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "position", Vector2(position.x, closedPosition.y), 1)
-	
-	if state == "Opened" and (position.y != closedPosition.y - 200):
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "position", Vector2(position.x, closedPosition.y - 200), 1)
+	$DoorAnimatedSprite.set_animation("Close")
+	$DoorAnimatedSprite.frame = 11
 
 
 func open():
-	state = "Opened"
+	if $DoorAnimatedSprite.animation != "Open":
+		var progress = 11 - $DoorAnimatedSprite.frame
+		$DoorAnimatedSprite.set_animation("Open")
+		$DoorAnimatedSprite.frame = progress
+		$DoorCollisionShape.set_deferred("disabled", true)
+		$DoorAnimatedSprite.play()
 
 
 func close():
-	state = "Closed"
+	if $DoorAnimatedSprite.animation != "Close":
+		var progress = 11 - $DoorAnimatedSprite.frame
+		$DoorAnimatedSprite.set_animation("Close")
+		$DoorAnimatedSprite.frame = progress
+		$DoorCollisionShape.set_deferred("disabled", false)
+		$DoorAnimatedSprite.play()

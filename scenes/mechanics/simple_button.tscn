@@ -1,48 +1,95 @@
-[gd_scene load_steps=5 format=3 uid="uid://p45e7cpriw7g"]
+[gd_scene load_steps=13 format=3 uid="uid://p45e7cpriw7g"]
 
 [ext_resource type="Script" path="res://scripts/simple_button.gd" id="1_djjcu"]
+[ext_resource type="Texture2D" uid="uid://bmu84hdwc115s" path="res://graphics/objects/Button.png" id="2_0japj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibixc"]
-size = Vector2(100, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkse4"]
-size = Vector2(80, 10)
+size = Vector2(64, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_353nd"]
-size = Vector2(80, 3)
+size = Vector2(64, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03qt1"]
+atlas = ExtResource("2_0japj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u57km"]
+atlas = ExtResource("2_0japj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnduo"]
+atlas = ExtResource("2_0japj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rbtl"]
+atlas = ExtResource("2_0japj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2agoa"]
+atlas = ExtResource("2_0japj")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl58i"]
+atlas = ExtResource("2_0japj")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td1t8"]
+atlas = ExtResource("2_0japj")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ag4jp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03qt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u57km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnduo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rbtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2agoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl58i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td1t8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="SimpleButton" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_djjcu")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -40.0
-offset_top = -20.0
-offset_right = 40.0
-color = Color(0.980392, 0.494118, 0.443137, 1)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -50.0
-offset_top = -10.0
-offset_right = 50.0
-offset_bottom = 10.0
-color = Color(0.556863, 0.556863, 0.556863, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ButtonCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ibixc")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -15)
-shape = SubResource("RectangleShape2D_kkse4")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ButtonArea" type="Area2D" parent="."]
+position = Vector2(0, 2)
 collision_layer = 4
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonArea"]
 position = Vector2(0, -21.5)
 shape = SubResource("RectangleShape2D_353nd")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="ButtonAnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ag4jp")
+frame = 1
+frame_progress = 0.344841
+speed_scale = 1.5
+
+[connection signal="body_entered" from="ButtonArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="ButtonArea" to="." method="_on_area_2d_body_exited"]

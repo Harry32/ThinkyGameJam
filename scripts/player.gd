@@ -8,10 +8,19 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
 var block_deceleration : bool = false
 var external_gravity : bool = false
 var currentAngle : float = 0
+var state: String = "Idle"
+var animation_playback : AnimationNodeStateMachinePlayback
+var direction: float = 0
 
 
 func _ready():
 	GravityInformation.connect("up_direction_change", update_up_direction)
+	animation_playback = $AnimationTree["parameters/playback"]
+	$AnimationTree.active = true
+
+
+func _process(_delta):
+	update_animation()
 
 
 func _physics_process(delta):
@@ -25,7 +34,7 @@ func _physics_process(delta):
 		change_up_direction()
 	else:
 		movement()
-	
+
 	move_and_slide()
 	calculate_push()
 
@@ -40,10 +49,12 @@ func calculate_gravity(delta):
 func jump():
 		velocity.y = JUMP_VELOCITY * (up_direction.y)
 		velocity.x = JUMP_VELOCITY * (up_direction.x)
+		state = "Jump"
 
 
 ## Change direction based on input.
 func change_up_direction():
+	state = "A.Power"
 	# I changed the order of these parameters to avoid calculations
 	var newUpDirection = Input.get_vector("Right", "Left", "Down", "Up")
 	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.get_up_direction():
@@ -53,9 +64,9 @@ func change_up_direction():
 ## Handle character movement.
 func movement():
 	# Get the input direction and handle the movement/deceleration
-	var direction = Input.get_axis("Left", "Right")
+	direction = Input.get_axis("Left", "Right")
 	var direction_vertical_movement = 1
-	
+
 	if up_direction.y != 0:
 		if direction:
 			velocity.x = direction * SPEED
@@ -67,7 +78,7 @@ func movement():
 			direction_vertical_movement = -1
 		else:
 			direction_vertical_movement = 1
-			
+
 		if direction:
 			velocity.y = direction * direction_vertical_movement * SPEED
 		else:
@@ -119,3 +130,48 @@ func set_external_gravity(upDirection: Vector2):
 func set_global_gravity():
 	external_gravity = false
 	update_up_direction(GravityInformation.get_up_direction())
+
+
+func update_animation():
+	update_facing_direction()
+
+	if is_on_floor():
+		if state == "Idle":
+			$AnimationTree.set("parameters/Move/blend_position", direction)
+
+		if state == "Fall" and velocity.y == 0:
+			state = "Landing"
+
+		if state == "Landing":
+			state = "Idle"
+			animation_playback.travel("Landing")
+
+	else:
+		if state == "Idle" and animation_playback.get_current_node() == "Move":
+			state = "Fall"
+			animation_playback.travel("Fall")
+		if state == "Fall":
+			animation_playback.travel("Fall")
+		if state == "Jump" and animation_playback.get_current_node() != "Jump":
+			animation_playback.travel("Jump")
+		if velocity.y > 0 and state == "Jump":
+			state = "Fall"
+			animation_playback.travel("Fall")
+
+	if state == "A.Power":
+		state = "H.Power"
+		animation_playback.travel("Activating Power")
+	
+	if state == "H.Power":
+		animation_playback.travel("Holding Power")
+	
+	if (state == "D.Power" or state == "H.Power" or state == "A.Power") and not Input.is_action_pressed("Gravity"):
+		state = "Fall"
+		if is_on_floor():
+			state = "Idle"
+		animation_playback.travel("Deactivating Power")
+
+
+func update_facing_direction():
+	if direction != 0:
+		$PlayerSprite.flip_h = direction < 0

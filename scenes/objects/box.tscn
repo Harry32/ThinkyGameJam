@@ -1,18 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dguxwd8kbvmuh"]
+[gd_scene load_steps=5 format=3 uid="uid://dguxwd8kbvmuh"]
 
 [ext_resource type="PackedScene" uid="uid://b3rc3238hvjq2" path="res://scenes/objects/object.tscn" id="1_jo6b3"]
+[ext_resource type="Texture2D" uid="uid://7fwbcmg2b0sg" path="res://graphics/objects/Box1.png" id="2_ofnsq"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bmip0"]
+polygon = PackedVector2Array(-28, -23, 28, -23, 28, 21, -28, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vstl0"]
-size = Vector2(40, 40)
+size = Vector2(56, 40.7407)
 
 [node name="Box" instance=ExtResource("1_jo6b3")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="0"]
+occluder = SubResource("OccluderPolygon2D_bmip0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -1)
+scale = Vector2(1, 1.08)
 shape = SubResource("RectangleShape2D_vstl0")
 
-[node name="ColorRect" type="ColorRect" parent="." index="1"]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(0.415686, 0.415686, 0.415686, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ofnsq")
+offset = Vector2(0, -5.5)

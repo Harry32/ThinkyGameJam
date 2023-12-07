@@ -1,18 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://d74u40b0yxit"]
+[gd_scene load_steps=10 format=3 uid="uid://d74u40b0yxit"]
 
 [ext_resource type="Script" path="res://scripts/gravitational_field.gd" id="1_c2c5j"]
 [ext_resource type="Shader" uid="uid://bc36nu7w73di8" path="res://shaders/gravitational_field.tres" id="2_ldl5w"]
 [ext_resource type="Texture2D" uid="uid://bpik412hmh0vs" path="res://graphics/rectangle.png" id="2_vbmlx"]
+[ext_resource type="Texture2D" uid="uid://dmnl22sebbwgg" path="res://graphics/objects/gravity-field.png" id="3_26h5s"]
 [ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="4_oids6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8fjm2"]
-size = Vector2(20, 244)
+size = Vector2(13.6752, 192)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_56oof"]
 shader = ExtResource("2_ldl5w")
 
 [sub_resource type="Gradient" id="Gradient_gro61"]
-colors = PackedColorArray(0, 0.745098, 0.643137, 0, 0, 0.745098, 0.643137, 1)
+colors = PackedColorArray(0.337255, 0.415686, 0.537255, 0, 0.337255, 0.415686, 0.537255, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1s2eo"]
+polygon = PackedVector2Array(32, -96, 32, 96, 34, 96, 34, -96)
 
 [node name="GravitationalField" type="Area2D"]
 collision_layer = 4
@@ -21,6 +25,7 @@ script = ExtResource("1_c2c5j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2(9.53674e-07, 0)
 scale = Vector2(4.68, 1)
 shape = SubResource("RectangleShape2D_8fjm2")
 
@@ -31,19 +36,39 @@ collide_with_bodies = false
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.384314, 0.690196, 0.976471, 1)
 material = SubResource("ShaderMaterial_56oof")
-texture = ExtResource("2_vbmlx")
+scale = Vector2(1, 2)
+texture = ExtResource("3_26h5s")
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 position = Vector2(0, 99)
 emitting = false
-lifetime = 1.1
+lifetime = 0.8
 texture = ExtResource("4_oids6")
 emission_shape = 3
-emission_rect_extents = Vector2(47, 1)
+emission_rect_extents = Vector2(31, 1)
 gravity = Vector2(0, 0)
 scale_amount_min = 0.1
 scale_amount_max = 0.2
 color_ramp = SubResource("Gradient_gro61")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -96)
+scale = Vector2(0.680851, 0.786885)
+color = Color(0.8, 0.886275, 0.882353, 1)
+shadow_enabled = true
+shadow_color = Color(0.8, 0.886275, 0.882353, 0.188235)
+shadow_item_cull_mask = 3
+texture = ExtResource("2_vbmlx")
+offset = Vector2(1.90735e-06, 122)
+
+[node name="RightLightOccluder" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_1s2eo")
+occluder_light_mask = 2
+
+[node name="LeftLightOccluder" type="LightOccluder2D" parent="."]
+position = Vector2(-66, 0)
+occluder = SubResource("OccluderPolygon2D_1s2eo")
+occluder_light_mask = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

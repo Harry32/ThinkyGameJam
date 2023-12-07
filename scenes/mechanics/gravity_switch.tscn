@@ -1,17 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://rlgyfwvht71v"]
+[gd_scene load_steps=13 format=3 uid="uid://rlgyfwvht71v"]
 
 [ext_resource type="Script" path="res://scripts/gravity_switch.gd" id="1_asktq"]
 [ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="1_dpxdo"]
 [ext_resource type="Script" path="res://scripts/switch_ball.gd" id="1_ll8h6"]
+[ext_resource type="Texture2D" uid="uid://dxinow0nu3td" path="res://graphics/objects/Gravity Switch (Back).png" id="2_ysjg2"]
+[ext_resource type="Texture2D" uid="uid://bj77wie8lw2n3" path="res://graphics/objects/Gravity Switch (Switch).png" id="4_0qvy5"]
+[ext_resource type="Texture2D" uid="uid://clyp2sjndr6e8" path="res://graphics/objects/Gravity Switch (Glass).png" id="5_pm3e7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4so"]
-size = Vector2(90, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo8my"]
+size = Vector2(52, 22)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_525yb"]
-size = Vector2(20, 163)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx6ja"]
+size = Vector2(52, 22)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odktn"]
-size = Vector2(18, 40)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jtl3"]
+size = Vector2(13, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4naf6"]
 size = Vector2(50, 20)
@@ -19,87 +22,32 @@ size = Vector2(50, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hpvme"]
 size = Vector2(50, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fp0oy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3v1g"]
+size = Vector2(15.7895, 15.7895)
 
 [node name="GravitySwitch" type="StaticBody2D"]
-position = Vector2(0, 89)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_asktq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8l4so")
+[node name="TopCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -53)
+shape = SubResource("RectangleShape2D_fo8my")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -183)
-shape = SubResource("RectangleShape2D_8l4so")
+[node name="BottonCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 53)
+shape = SubResource("RectangleShape2D_mx6ja")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-35, -91.5)
-shape = SubResource("RectangleShape2D_525yb")
+[node name="LeftCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-19.5, 0)
+shape = SubResource("RectangleShape2D_8jtl3")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2(35, -91.5)
-shape = SubResource("RectangleShape2D_525yb")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
-position = Vector2(-54, -89)
-shape = SubResource("RectangleShape2D_odktn")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
-position = Vector2(54, -89)
-shape = SubResource("RectangleShape2D_odktn")
-
-[node name="Box" type="Node2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Box"]
-offset_left = -45.0
-offset_top = -10.0
-offset_right = 45.0
-offset_bottom = 10.0
-color = Color(0.603922, 0.603922, 0.603922, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="Box"]
-offset_left = -45.0
-offset_top = -193.0
-offset_right = 45.0
-offset_bottom = -173.0
-color = Color(0.603922, 0.603922, 0.603922, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect3" type="ColorRect" parent="Box"]
-offset_left = -45.0
-offset_top = -173.0
-offset_right = -25.0
-offset_bottom = -10.0
-color = Color(0.603922, 0.603922, 0.603922, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect4" type="ColorRect" parent="Box"]
-offset_left = 25.0
-offset_top = -173.0
-offset_right = 45.0
-offset_bottom = -10.0
-color = Color(0.603922, 0.603922, 0.603922, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="LightL" type="ColorRect" parent="Box"]
-offset_left = -63.0
-offset_top = -109.0
-offset_right = -45.0
-offset_bottom = -69.0
-color = Color(1, 0.435294, 0.439216, 1)
-
-[node name="LightR" type="ColorRect" parent="Box"]
-offset_left = 45.0
-offset_top = -109.0
-offset_right = 63.0
-offset_bottom = -69.0
-color = Color(1, 0.435294, 0.439216, 1)
+[node name="RightCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(19.5, 0)
+shape = SubResource("RectangleShape2D_8jtl3")
 
 [node name="OnArea" type="Area2D" parent="."]
-position = Vector2(0, -183)
+position = Vector2(0, -52)
 collision_layer = 4
 collision_mask = 2
 
@@ -108,6 +56,7 @@ position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_4naf6")
 
 [node name="OffArea" type="Area2D" parent="."]
+position = Vector2(0, 52)
 collision_layer = 4
 collision_mask = 2
 
@@ -115,19 +64,79 @@ collision_mask = 2
 position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_hpvme")
 
-[node name="SwitchBall" type="RigidBody2D" parent="."]
-position = Vector2(0, -89)
+[node name="BackSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ysjg2")
+
+[node name="Switch" type="RigidBody2D" parent="."]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_ll8h6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchBall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch"]
+position = Vector2(3.57628e-07, -3.57628e-07)
 scale = Vector2(1.52, 1.52)
-shape = SubResource("CircleShape2D_fp0oy")
+shape = SubResource("RectangleShape2D_g3v1g")
 
-[node name="Sprite2D" type="Sprite2D" parent="SwitchBall"]
-modulate = Color(0.937255, 0.427451, 0.898039, 1)
+[node name="SwitchSprite" type="Sprite2D" parent="Switch"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_0qvy5")
+
+[node name="GlassSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("5_pm3e7")
+
+[node name="OnLights" type="Node2D" parent="."]
+
+[node name="CenterPointLight" type="PointLight2D" parent="OnLights"]
+position = Vector2(0, -50)
+color = Color(0.27451, 0.776471, 0.341176, 1)
+shadow_enabled = true
+shadow_color = Color(0.27451, 0.776471, 0.341176, 0.0196078)
 texture = ExtResource("1_dpxdo")
+texture_scale = 2.0
+
+[node name="LeftPointLight" type="PointLight2D" parent="OnLights"]
+position = Vector2(-9, -51)
+color = Color(0.27451, 0.776471, 0.341176, 1)
+shadow_enabled = true
+shadow_color = Color(0.27451, 0.776471, 0.341176, 0.0196078)
+texture = ExtResource("1_dpxdo")
+texture_scale = 2.0
+
+[node name="RightPointLight" type="PointLight2D" parent="OnLights"]
+position = Vector2(9, -51)
+color = Color(0.27451, 0.776471, 0.341176, 1)
+shadow_enabled = true
+shadow_color = Color(0.27451, 0.776471, 0.341176, 0.0196078)
+texture = ExtResource("1_dpxdo")
+texture_scale = 2.0
+
+[node name="OffLights" type="Node2D" parent="."]
+position = Vector2(0, 50)
+
+[node name="CenterPointLight" type="PointLight2D" parent="OffLights"]
+color = Color(0.823529, 0.184314, 0.117647, 1)
+shadow_enabled = true
+shadow_color = Color(0.823529, 0.184314, 0.117647, 0.0196078)
+texture = ExtResource("1_dpxdo")
+texture_scale = 2.0
+
+[node name="LeftPointLight" type="PointLight2D" parent="OffLights"]
+position = Vector2(-9, 1)
+color = Color(0.823529, 0.184314, 0.117647, 1)
+shadow_enabled = true
+shadow_color = Color(0.823529, 0.184314, 0.117647, 0.0196078)
+texture = ExtResource("1_dpxdo")
+texture_scale = 2.0
+
+[node name="RightPointLight" type="PointLight2D" parent="OffLights"]
+position = Vector2(9, 1)
+color = Color(0.823529, 0.184314, 0.117647, 1)
+shadow_enabled = true
+shadow_color = Color(0.823529, 0.184314, 0.117647, 0.0196078)
+texture = ExtResource("1_dpxdo")
+texture_scale = 2.0
 
 [connection signal="body_entered" from="OnArea" to="." method="_on_on_area_body_entered"]
 [connection signal="body_entered" from="OffArea" to="." method="_on_off_area_body_entered"]
