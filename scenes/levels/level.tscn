@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c8y7wph201vx4"]
+[gd_scene load_steps=27 format=3 uid="uid://c8y7wph201vx4"]
 
 [ext_resource type="PackedScene" uid="uid://crdgt41diya2q" path="res://scenes/player/player.tscn" id="1_2inqr"]
 [ext_resource type="Texture2D" uid="uid://1vp7khvmokw5" path="res://graphics/tilesets/tile_sheet_288x288.png" id="2_a1k0y"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cqb6p78klute2" path="res://scenes/mechanics/black_hole.tscn" id="6_7ffrs"]
 [ext_resource type="PackedScene" uid="uid://rlgyfwvht71v" path="res://scenes/mechanics/gravity_switch.tscn" id="7_ncvhf"]
 [ext_resource type="PackedScene" uid="uid://4y5nyajcta5s" path="res://scenes/objects/ramp.tscn" id="8_g6min"]
+[ext_resource type="AudioStream" uid="uid://b4256dysmvsvu" path="res://sounds/musics/OdeToJosieneSpace.mp3" id="9_6i1km"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cd2tq"]
 polygon = PackedVector2Array(16, 16, 16, -16, -16, -16, -16, 16)
@@ -378,3 +379,8 @@ door = NodePath("../Door")
 
 [node name="Box" parent="." instance=ExtResource("3_usd80")]
 position = Vector2(867, 949)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_6i1km")
+volume_db = -5.0
+autoplay = true
