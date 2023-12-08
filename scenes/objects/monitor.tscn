@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3lvv6co1ketv"]
+
+[ext_resource type="Script" path="res://scripts/monitor.gd" id="1_yifm8"]
+[ext_resource type="FontFile" uid="uid://q0ai3wfelumn" path="res://graphics/fonts/FutureMillennium.ttf" id="2_qtnl1"]
+[ext_resource type="Texture2D" uid="uid://cet35klqxt1na" path="res://graphics/objects/Monitor.png" id="2_ywov6"]
+[ext_resource type="Texture2D" uid="uid://d2ado71mbc1g3" path="res://graphics/objects/Screen.png" id="3_fy8r1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sj8ns"]
+font = ExtResource("2_qtnl1")
+font_size = 20
+font_color = Color(0.356863, 0.92549, 0.945098, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtno2"]
+atlas = ExtResource("3_fy8r1")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gygok"]
+atlas = ExtResource("3_fy8r1")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a6bx"]
+atlas = ExtResource("3_fy8r1")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s0oa"]
+atlas = ExtResource("3_fy8r1")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bsc6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtno2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gygok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a6bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s0oa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Monitor" type="Node2D"]
+script = ExtResource("1_yifm8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ywov6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -16.0
+offset_right = 3.0
+offset_bottom = 8.0
+size_flags_horizontal = 4
+text = "3"
+label_settings = SubResource("LabelSettings_sj8ns")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7bsc6")
+autoplay = "default"
+frame = 1
+frame_progress = 0.475334

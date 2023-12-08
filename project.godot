@@ -13,6 +13,7 @@ config_version=5
 config/name="ThinkyGameJam"
 run/main_scene="res://scenes/levels/level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -82,6 +83,7 @@ Pause={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Movable Objects"
 2d_physics/layer_3="Fixed Objects"
+2d_physics/layer_4="Fragments"
 
 [rendering]
 

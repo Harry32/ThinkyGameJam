@@ -1,28 +1,35 @@
-extends AnimatableBody2D
+extends StaticBody2D
 
 ## Set the necessary weight to move the platform. The weight used is the mass of the rigid body that interacts with the platform
 @export var necessaryWeigth : float = 3
 ## Set the distance the platform will travel
 @export var movementDistance : float = 200
 ## Set the platform's speed
-@export var speed : float = 50
+@export var speed : float = 300
 
 var currentWeight : float = 0;
 var originalPosition : Vector2
 var destinationPosition : Vector2
-var tween : Tween
-var activeColor : Color = Color("#88ba55")
-var inactiveColor : Color = Color("#fa7e71")
+var movementPosition: Vector2
+
 
 func _ready():
 	originalPosition = position
-	destinationPosition = position
-	tween = create_tween()
-	update_label()
+	destinationPosition = Vector2(originalPosition.x, originalPosition.y + movementDistance)
+	movementPosition = position
+	
+	update_label(false)
 
 
-func _physics_process(delta):
-	position = position.lerp(destinationPosition, 0.5 * delta)
+func _physics_process(_delta):
+	position = position.lerp(movementPosition, 1)
+	
+	#if position.y == movementPosition.y:
+		#print("pos %f" % position.y)
+		#print("des %f" % destinationPosition.y)
+		#print("org %f" % originalPosition.y)
+		#print("mov %f" % movementPosition.y)
+		#stop_animation()
 
 
 ## At every new RigidBody2D on the platform the currentWeight is updated
@@ -30,12 +37,12 @@ func _on_area_2d_body_entered(body):
 	var preWeight = currentWeight
 	if body is RigidBody2D:
 		currentWeight += body.mass
-		
+
 		update_label()
-		wait_time()
-		
+
 		if(preWeight < necessaryWeigth and currentWeight >= necessaryWeigth):
-			move_platform(movementDistance)
+			move_platform(destinationPosition)
+			play_animation(false)
 
 
 ## At every new RigidBody2D that leaves the platform the currentWeight is updated
@@ -43,40 +50,36 @@ func _on_area_2d_body_exited(body):
 	var preWeight = currentWeight
 	if body is RigidBody2D:
 		currentWeight -= body.mass
-		
+
 		update_label()
-		wait_time()
-		
+
 		if(preWeight >= necessaryWeigth and currentWeight < necessaryWeigth):
-			move_platform(-movementDistance)
+			move_platform(originalPosition)
+			play_animation(true)
 
 
 ## A tween is setted to gradually change destinationPosition
-func move_platform(distance: float):
-	var move_position = Vector2(originalPosition.x, originalPosition.y + distance)
+func move_platform(destination: Vector2):
+	var duration = int(destination.length() / float(speed * ($AnimatedSprite.scale.y/2)))
 	
-	var duration = move_position.length() / float(speed * ($PlatformContainer.size.y/2))
-	
-	if tween.is_running():
-		tween.kill()
-	tween = create_tween()
-	
-	tween.tween_property(self, "destinationPosition", move_position, duration)
-
-
-## Start and wait for a timer. It's used so bouncing box do not change the platform's movement
-func wait_time():
-	$Timer.start()
-	await $Timer.timeout
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "movementPosition", destination, duration)
+	tween.connect("finished", stop_animation)
 
 
 ## Update label color and text
-func update_label():
+func update_label(blinkText: bool = true):
 	var value = necessaryWeigth - currentWeight
-	
-	$PlatformContainer/Label.text = str(value)
-	
-	if value == 0:
-		$PlatformContainer/Label.add_theme_color_override("font_color", activeColor)
+
+	$Monitor.set_text(str(value), blinkText)
+
+
+func play_animation(up: bool):
+	if up:
+		$AnimatedSprite.play()
 	else:
-		$PlatformContainer/Label.add_theme_color_override("font_color", inactiveColor)
+		$AnimatedSprite.play_backwards()
+
+
+func stop_animation():
+	$AnimatedSprite.stop()

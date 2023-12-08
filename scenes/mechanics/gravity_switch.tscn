@@ -27,7 +27,7 @@ size = Vector2(15.7895, 15.7895)
 
 [node name="GravitySwitch" type="StaticBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_asktq")
 
 [node name="TopCollisionShape" type="CollisionShape2D" parent="."]

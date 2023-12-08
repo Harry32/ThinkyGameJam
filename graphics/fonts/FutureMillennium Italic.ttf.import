@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://ctoins8y01jnt"
+path="res://.godot/imported/FutureMillennium Italic.ttf-374214a0a6a7bc13969b4960974cacba.fontdata"
+
+[deps]
+
+source_file="res://graphics/fonts/FutureMillennium Italic.ttf"
+dest_files=["res://.godot/imported/FutureMillennium Italic.ttf-374214a0a6a7bc13969b4960974cacba.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

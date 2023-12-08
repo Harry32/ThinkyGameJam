@@ -1,96 +1,370 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxr5pv4tcmwfk"]
+[gd_scene load_steps=29 format=3 uid="uid://bxr5pv4tcmwfk"]
 
 [ext_resource type="Script" path="res://scripts/destructible_cover.gd" id="1_4ic0g"]
+[ext_resource type="Texture2D" uid="uid://dfubpulrvc4vk" path="res://graphics/objects/Glass Silo.png" id="2_jcw1c"]
+[ext_resource type="Script" path="res://scripts/object.gd" id="2_t0ava"]
+[ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="3_mgsla"]
+[ext_resource type="Texture2D" uid="uid://iwjoaaa0xd4b" path="res://graphics/objects/Silo Fragments.png" id="4_cy11p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr18e"]
-size = Vector2(96, 96)
+size = Vector2(74, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxrvw"]
-size = Vector2(39.8082, 46.7692)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4ycr"]
+size = Vector2(74, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x6c5"]
+size = Vector2(66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3g40"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk5fv"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu2e1"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8y75"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ipa"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ns3w"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym3y0"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6bnt"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpiox"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h3al"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em443"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isliy"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvr88"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8i1c"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egqry"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcgul"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llxec"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g8kv"]
+atlas = ExtResource("2_jcw1c")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rj3ds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3g40")
+}],
+"loop": false,
+"name": &"Broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk5fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu2e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8y75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ipa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ns3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym3y0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6bnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpiox")
+}],
+"loop": false,
+"name": &"Hit 1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h3al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em443")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isliy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvr88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8i1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egqry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcgul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llxec")
+}],
+"loop": false,
+"name": &"Hit 2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g8kv")
+}],
+"loop": false,
+"name": &"Whole",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_doxp8"]
+colors = PackedColorArray(0.615686, 0.615686, 0.615686, 0.894118, 0.615686, 0.615686, 0.615686, 0.827451)
 
 [node name="DestructibleCover" type="StaticBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_4ic0g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, 0)
+[node name="TopCollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -41)
 shape = SubResource("RectangleShape2D_pr18e")
 
+[node name="BottomCollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, 41)
+shape = SubResource("RectangleShape2D_x4ycr")
+
+[node name="GlassCollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_8x6c5")
+
 [node name="CoverHitArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="CoverHitArea"]
-position = Vector2(5.96046e-07, 1.96695e-06)
-scale = Vector2(2.46181, 2.09539)
-shape = SubResource("RectangleShape2D_nxrvw")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CoverHitArea"]
+polygon = PackedVector2Array(-41, -49, -41, -39, -39, -39, -39, -31, -35, -31, -35, 29, -39, 29, -39, 39, -41, 39, -41, 51, 39, 51, 39, 39, 37, 39, 37, 29, 33, 29, 33, -31, 37, -31, 37, -39, 39, -39, 39, -49)
 
-[node name="CoverShape" type="Node2D" parent="."]
+[node name="Fragments" type="Node2D" parent="."]
+visible = false
 
-[node name="Glass" type="ColorRect" parent="CoverShape"]
-offset_left = -48.0
-offset_top = -48.0
-offset_right = 48.0
-offset_bottom = 48.0
-color = Color(0.780392, 1, 1, 0.47451)
+[node name="Fragment1" type="RigidBody2D" parent="Fragments"]
+position = Vector2(-22, -24)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
 
-[node name="Reflexes" type="Node2D" parent="CoverShape"]
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment1"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+metadata/_edit_lock_ = true
 
-[node name="ColorRect3" type="ColorRect" parent="CoverShape/Reflexes"]
-offset_left = 40.0
-offset_top = 8.0
-offset_right = 40.4
-offset_bottom = 48.0
-rotation = 0.785398
-color = Color(1, 1, 1, 0.568627)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment1"]
+polygon = PackedVector2Array(-10, 22, -11, -20, 16, 4)
+metadata/_edit_lock_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="CoverShape/Reflexes"]
-offset_left = -10.0
-offset_top = -37.0
-offset_right = -9.6
-offset_bottom = 3.0
-rotation = 0.785398
-color = Color(1, 1, 1, 0.568627)
+[node name="Fragment2" type="RigidBody2D" parent="Fragments"]
+position = Vector2(1, -35)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
 
-[node name="ColorRect4" type="ColorRect" parent="CoverShape/Reflexes"]
-offset_left = 28.0
-offset_top = -28.0
-offset_right = 28.4
-offset_bottom = 52.0
-rotation = 0.785398
-color = Color(1, 1, 1, 0.568627)
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment2"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 1
+metadata/_edit_lock_ = true
 
-[node name="Borders" type="Node2D" parent="CoverShape"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment2"]
+polygon = PackedVector2Array(-4, 11, -22, -9, 19, -9)
+metadata/_edit_lock_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="CoverShape/Borders"]
-offset_left = -47.0
-offset_top = -47.0
-offset_right = 48.0
-offset_bottom = -46.0
-rotation = 1.5708
-color = Color(1, 1, 1, 0.407843)
+[node name="Fragment3" type="RigidBody2D" parent="Fragments"]
+position = Vector2(22, -32)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
 
-[node name="ColorRect3" type="ColorRect" parent="CoverShape/Borders"]
-offset_left = 48.0
-offset_top = -47.0
-offset_right = 143.0
-offset_bottom = -46.0
-rotation = 1.5708
-color = Color(1, 1, 1, 0.407843)
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment3"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 2
+metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="CoverShape/Borders"]
-offset_left = -48.0
-offset_top = -48.0
-offset_right = 48.0
-offset_bottom = -47.0
-color = Color(1, 1, 1, 0.407843)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment3"]
+polygon = PackedVector2Array(-25, 12, 14, -17, 12, 18)
+metadata/_edit_lock_ = true
 
-[node name="ColorRect4" type="ColorRect" parent="CoverShape/Borders"]
-offset_left = -47.0
-offset_top = 47.0
-offset_right = 47.0
-offset_bottom = 48.0
-color = Color(1, 1, 1, 0.407843)
+[node name="Fragment4" type="RigidBody2D" parent="Fragments"]
+position = Vector2(0, -9)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment4"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 3
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment4"]
+polygon = PackedVector2Array(-16, 11, -8, -8, 9, 8)
+metadata/_edit_lock_ = true
+
+[node name="Fragment5" type="RigidBody2D" parent="Fragments"]
+position = Vector2(18, 4)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment5"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment5"]
+polygon = PackedVector2Array(-9, 11, -6, -13, 11, -1)
+metadata/_edit_lock_ = true
+
+[node name="Fragment6" type="RigidBody2D" parent="Fragments"]
+position = Vector2(-18, 19)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment6"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 5
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment6"]
+polygon = PackedVector2Array(-14, 3, 9, -17, 13, 5)
+metadata/_edit_lock_ = true
+
+[node name="Fragment7" type="RigidBody2D" parent="Fragments"]
+position = Vector2(23, 21)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment7"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 6
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment7"]
+polygon = PackedVector2Array(-19, 7, 7, -10, 10, 11)
+metadata/_edit_lock_ = true
+
+[node name="Fragment8" type="RigidBody2D" parent="Fragments"]
+position = Vector2(32, 3)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("2_t0ava")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fragments/Fragment8"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_cy11p")
+hframes = 3
+vframes = 3
+frame = 7
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment8"]
+polygon = PackedVector2Array(-1, 9, -5, -13, 5, -2)
+metadata/_edit_lock_ = true
+
+[node name="CoverAnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rj3ds")
+animation = &"Whole"
+metadata/_edit_lock_ = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 200
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.75
+randomness = 0.5
+lifetime_randomness = 0.7
+texture = ExtResource("3_mgsla")
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.6
+scale_amount_max = 0.6
+color = Color(0.145098, 0.145098, 0.145098, 1)
+color_ramp = SubResource("Gradient_doxp8")
 
 [connection signal="body_entered" from="CoverHitArea" to="." method="_on_cover_hit_area_body_entered"]

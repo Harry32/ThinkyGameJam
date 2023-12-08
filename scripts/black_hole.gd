@@ -1,4 +1,5 @@
 extends Area2D
+class_name BlackHole
 
 ## Set the force of the black hole's gravity field
 @export_range(0, 500) var gravityForce : float = 40

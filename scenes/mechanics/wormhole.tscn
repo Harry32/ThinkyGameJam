@@ -1,23 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://jk87f3a5abbo"]
+[gd_scene load_steps=4 format=3 uid="uid://c6ut8vo82j648"]
 
 [ext_resource type="Script" path="res://scripts/wormhole.gd" id="1_erprl"]
-[ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="1_igecu"]
+[ext_resource type="PackedScene" uid="uid://cqb6p78klute2" path="res://scenes/mechanics/black_hole.tscn" id="1_jcrld"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8jv6l"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1eiqs"]
 
-[node name="Wormhole" type="Area2D"]
-collision_layer = 4
-collision_mask = 3
+[node name="Wormhole" instance=ExtResource("1_jcrld")]
 script = ExtResource("1_erprl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2.72, 2.72)
-shape = SubResource("CircleShape2D_8jv6l")
+[node name="WormwholeArea" type="Area2D" parent="." index="4"]
+collision_layer = 4
+collision_mask = 11
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(2, 2)
-texture = ExtResource("1_igecu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WormwholeArea" index="0"]
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_1eiqs")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="WormwholeArea" to="." method="_on_wormwhole_area_body_entered"]
+[connection signal="body_exited" from="WormwholeArea" to="." method="_on_wormwhole_area_body_exited"]

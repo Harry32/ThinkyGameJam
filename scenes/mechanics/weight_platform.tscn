@@ -1,61 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://drabor3uv3ars"]
+[gd_scene load_steps=10 format=3 uid="uid://drabor3uv3ars"]
 
 [ext_resource type="Script" path="res://scripts/weight_platform.gd" id="1_1iyrv"]
+[ext_resource type="Texture2D" uid="uid://x3hjs3rb2bvl" path="res://graphics/objects/Weight Platform.png" id="2_lbs7r"]
+[ext_resource type="PackedScene" uid="uid://d3lvv6co1ketv" path="res://scenes/objects/monitor.tscn" id="3_r3w8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouxgc"]
-size = Vector2(360, 70)
+size = Vector2(192, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51yoq"]
-size = Vector2(90, 360)
+size = Vector2(63, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlyv1"]
+atlas = ExtResource("2_lbs7r")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8bs4"]
+atlas = ExtResource("2_lbs7r")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp23n"]
+atlas = ExtResource("2_lbs7r")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jslbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlyv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8bs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp23n")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
 
 [node name="WeightPlatform" type="AnimatableBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_1iyrv")
 
 [node name="PlatformCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_ouxgc")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -180.0
-offset_top = -35.0
-offset_right = 180.0
-offset_bottom = 35.0
-color = Color(0.639216, 0.639216, 0.639216, 1)
-
-[node name="PlatformContainer" type="MarginContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -35.0
-offset_right = 180.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="PlatformContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 25
-text = "3"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 3
 
 [node name="SurfaceCollision" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.7266e-06, -80)
+position = Vector2(-3.36111e-05, -32.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_51yoq")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
+[node name="Monitor" parent="." instance=ExtResource("3_r3w8w")]
+position = Vector2(79, -46)
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jslbd")
+animation = &"Move"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

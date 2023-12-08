@@ -10,24 +10,26 @@ var actual_velocity: float
 
 func _ready():
 	GravityInformation.connect("up_direction_change", change_up_direction)
-	
+
 	gravity_vector.y = -gravity * mass
 	gravity_scale = 0
 
 
 func _physics_process(_delta):
 	apply_central_force(gravity_vector)
-	
+
+
 func _integrate_forces(state):
 	if teleportPosition != Vector2.ZERO:
 		state.transform.origin = teleportPosition
 		teleportPosition = Vector2.ZERO
-	
+
 	previous_velocity = actual_velocity
 	actual_velocity = state.linear_velocity.length()
-	
+
+
 func get_velocity():
-	return abs(previous_velocity - actual_velocity)
+	return abs(previous_velocity)
 
 
 ## Update up direction if the gravity is no changed by externals origins

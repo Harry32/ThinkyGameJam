@@ -1,4 +1,4 @@
-extends Area2D
+extends BlackHole
 
 
 ## Set here with the sibling wormhole
@@ -14,7 +14,7 @@ func _ready():
 
 
 ## Set new position and add the body in the sibling's transition array
-func _on_body_entered(body):
+func _on_wormwhole_area_body_entered(body):
 	if body not in transitionBodies:
 		if body is RigidBody2D:
 			body.teleportPosition = destinationPosition
@@ -24,5 +24,5 @@ func _on_body_entered(body):
 
 
 ## Remove the body from the transition array
-func _on_body_exited(body):
+func _on_wormwhole_area_body_exited(body):
 	transitionBodies.erase(body)
