@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://osp2udv5iiwm"]
+
+[ext_resource type="Script" path="res://scripts/teleporter.gd" id="1_s32s7"]
+[ext_resource type="Texture2D" uid="uid://cprh0y0nuak1m" path="res://graphics/objects/Teleporter.png" id="1_seuci"]
+[ext_resource type="Texture2D" uid="uid://pamnw1lmiq5n" path="res://graphics/objects/Teleporter Beam.png" id="3_1d55p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg5gk"]
+size = Vector2(72, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tncmp"]
+atlas = ExtResource("1_seuci")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs7p2"]
+atlas = ExtResource("1_seuci")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2ctb"]
+atlas = ExtResource("1_seuci")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ed4w"]
+atlas = ExtResource("1_seuci")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovxrr"]
+atlas = ExtResource("1_seuci")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6egu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tncmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs7p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2ctb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ed4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovxrr")
+}],
+"loop": true,
+"name": &"Activation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3plq"]
+size = Vector2(160, 140)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j5pxm"]
+polygon = PackedVector2Array(0, -40, 36, -40, 36, -37, 0, -37)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ifoii"]
+polygon = PackedVector2Array(0, -40, -36, -40, -36, -37, 0, -37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic3ef"]
+size = Vector2(64, 116)
+
+[node name="Teleporter" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_s32s7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_fg5gk")
+
+[node name="BackPointLight" type="PointLight2D" parent="."]
+position = Vector2(0, -31)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.403922)
+shadow_item_cull_mask = 5
+texture = ExtResource("3_1d55p")
+offset = Vector2(0, 69)
+
+[node name="FrontPointLight" type="PointLight2D" parent="."]
+position = Vector2(0, -31)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.403922)
+shadow_filter = 2
+shadow_item_cull_mask = 4
+texture = ExtResource("3_1d55p")
+offset = Vector2(0, 69)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_n6egu")
+animation = &"Activation"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 38)
+shape = SubResource("RectangleShape2D_i3plq")
+
+[node name="RightLightOccluder" type="LightOccluder2D" parent="."]
+position = Vector2(0, 29)
+occluder = SubResource("OccluderPolygon2D_j5pxm")
+occluder_light_mask = 4
+
+[node name="LeftLightOccluder" type="LightOccluder2D" parent="."]
+position = Vector2(0, 29)
+occluder = SubResource("OccluderPolygon2D_ifoii")
+occluder_light_mask = 4
+
+[node name="TeleportArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea"]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_ic3ef")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="TeleportArea" to="." method="_on_teleport_area_body_entered"]
+[connection signal="body_exited" from="TeleportArea" to="." method="_on_teleport_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpcipxx5w5ny6"]
+
+[ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="1_bryci"]
+[ext_resource type="PackedScene" uid="uid://osp2udv5iiwm" path="res://scenes/objects/teleporter.tscn" id="2_dpbl4"]
+
+[node name="LevelTeste" instance=ExtResource("1_bryci")]
+
+[node name="TileMap" parent="." index="1"]
+layer_1/tile_data = PackedInt32Array(26, 524288, 4, 65562, 524288, 6, 131098, 524288, 6, 196634, 524288, 6, 262170, 524288, 6, 327706, 524288, 6, 393242, 524288, 6, 458778, 524288, 6, 524314, 524288, 6, 589850, 524288, 6, 655386, 524288, 6, 720922, 524288, 6)
+
+[node name="Player" parent="." index="2"]
+position = Vector2(1439, 963)
+
+[node name="Teleporter" parent="." index="3" instance=ExtResource("2_dpbl4")]
+position = Vector2(1696, 939)
