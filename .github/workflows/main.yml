@@ -1,0 +1,25 @@
+on:
+  workflow_call:
+    inputs:
+      export_type:  # id of input
+        description: 'Type of build, default is debug'
+        required: true
+        default: 'debug'
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+     
+
+jobs:
+  publish_itch_io:
+    runs-on: ubuntu-latest
+    name: Publishing game on itch.io
+    steps:
+      - name: Checkout the game's code
+        uses: actions/checkout@v4
+      - name: Building and publishing inside container
+        uses: ./
+        id: build_pub_con
+        with:
+          godot_export_type: ${{ inputs.export_type }}

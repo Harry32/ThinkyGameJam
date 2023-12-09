@@ -1,0 +1,13 @@
+name: 'Building and publishing in a container'
+description: 'Building and publishing in a container'
+inputs:
+  godot_export_type:  # id of input
+    description: 'Type of build, default is debug'
+    required: true
+    default: 'debug'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.godot_export_type }}
+    - ${{ secrets.butler_api_key }}
