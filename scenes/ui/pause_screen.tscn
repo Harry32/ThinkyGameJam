@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bhoiqqokfqnm7"]
 
-[node name="PauseOverlay" type="Node2D"]
+[node name="PauseScreen" type="CanvasLayer"]
 process_mode = 2
+layer = 10
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1920.0
