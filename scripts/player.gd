@@ -19,7 +19,7 @@ func _ready():
 	animation_playback = $AnimationTree["parameters/playback"]
 	$AnimationTree.active = true
 	$PlayerSprite.material.set_shader_parameter("progress", 0)
-	print(GameInformation.is_debug_mode())
+	
 	if GameInformation.is_debug_mode():
 		active = true
 	else:

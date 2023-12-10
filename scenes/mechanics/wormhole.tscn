@@ -6,6 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1eiqs"]
 
 [node name="Wormhole" instance=ExtResource("1_jcrld")]
+light_mask = 1
+visibility_layer = 1
 script = ExtResource("1_erprl")
 
 [node name="WormwholeArea" type="Area2D" parent="." index="4"]
