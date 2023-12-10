@@ -189,7 +189,10 @@ func update_animation():
 
 func update_facing_direction():
 	if direction != 0:
-		$PlayerSprite.flip_h = direction < 0
+		if GravityInformation.get_up_direction() != Vector2.DOWN:
+			$PlayerSprite.flip_h = direction < 0
+		else:
+			$PlayerSprite.flip_h = direction > 0
 
 
 func move_to(movement_position: Vector2):
