@@ -51,10 +51,13 @@ func toggle_teleporter(leftOccluderPosition: Vector2, rightOccluderPosition: Vec
 func _on_teleport_area_body_entered(body):
 	player = body
 	player.move_to(position)
-	
-	var tween = create_tween().parallel()
-	tween.tween_property($FrontPointLight, "energy", 5, 2)
-	tween.connect("finished", activate_teleport)
+
+	if GameInformation.is_debug_mode():
+		activate_teleport()
+	else:
+		var tween = create_tween().parallel()
+		tween.tween_property($FrontPointLight, "energy", 5, 2)
+		tween.connect("finished", activate_teleport)
 
 
 func activate_teleport():

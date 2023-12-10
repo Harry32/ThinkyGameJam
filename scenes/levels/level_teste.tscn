@@ -8,5 +8,5 @@
 [node name="Player" parent="." index="2"]
 position = Vector2(225, 947)
 
-[node name="Teleporter" parent="." index="5" instance=ExtResource("2_dpbl4")]
+[node name="Teleporter" parent="." index="4" instance=ExtResource("2_dpbl4")]
 position = Vector2(1696, 939)

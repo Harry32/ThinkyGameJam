@@ -66,7 +66,8 @@ func change_up_direction():
 	# I changed the order of these parameters to avoid calculations
 	var newUpDirection = Input.get_vector("Right", "Left", "Down", "Up")
 	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.get_up_direction():
-		GravityInformation.update_up_direction(newUpDirection)
+		if abs(newUpDirection.x) != abs(newUpDirection.y):
+			GravityInformation.update_up_direction(newUpDirection)
 
 
 ## Handle character movement.
@@ -209,13 +210,16 @@ func activate():
 
 
 func teleport(leaving: bool = true):
-	var tween = create_tween()
-	if leaving:
-		tween.tween_method(set_shader_progress, 0.0, 0.5, 2)
-		tween.connect("finished", next_level)
+	if GameInformation.is_debug_mode():
+		next_level()
 	else:
-		tween.tween_method(set_shader_progress, 1.0, 0.0, 2)
-		tween.connect("finished", activate)
+		var tween = create_tween()
+		if leaving:
+			tween.tween_method(set_shader_progress, 0.0, 0.5, 2)
+			tween.connect("finished", next_level)
+		else:
+			tween.tween_method(set_shader_progress, 1.0, 0.0, 2)
+			tween.connect("finished", activate)
 
 
 func set_shader_progress(progress: float):

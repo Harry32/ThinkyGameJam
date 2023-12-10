@@ -1,7 +1,7 @@
 extends Node
 
 
-signal change_level(level: String)
+signal change_level(nextLevel: String)
 
 
 var levels : Array[String] = [
