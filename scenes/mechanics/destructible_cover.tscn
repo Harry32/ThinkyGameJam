@@ -212,7 +212,7 @@ vframes = 3
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment1"]
-polygon = PackedVector2Array(-10, 22, -11, -20, 16, 4)
+polygon = PackedVector2Array(-10, 22, -14, -13, 1, -17, 16, 4)
 metadata/_edit_lock_ = true
 
 [node name="Fragment2" type="RigidBody2D" parent="Fragments"]
@@ -230,7 +230,7 @@ frame = 1
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment2"]
-polygon = PackedVector2Array(-4, 11, -22, -9, 19, -9)
+polygon = PackedVector2Array(-4, 11, -12.8662, 1.14872, -22, -9, 19, -9, 12, 6)
 metadata/_edit_lock_ = true
 
 [node name="Fragment3" type="RigidBody2D" parent="Fragments"]
@@ -248,7 +248,7 @@ frame = 2
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment3"]
-polygon = PackedVector2Array(-25, 12, 14, -17, 12, 18)
+polygon = PackedVector2Array(-25, 12, -4, 1, 14, -17, 12, 18)
 metadata/_edit_lock_ = true
 
 [node name="Fragment4" type="RigidBody2D" parent="Fragments"]
@@ -266,7 +266,7 @@ frame = 3
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment4"]
-polygon = PackedVector2Array(-16, 11, -8, -8, 9, 8)
+polygon = PackedVector2Array(-16, 11, -8, -8, 7, -6, 9, 8)
 metadata/_edit_lock_ = true
 
 [node name="Fragment5" type="RigidBody2D" parent="Fragments"]
@@ -284,7 +284,7 @@ frame = 4
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment5"]
-polygon = PackedVector2Array(-9, 11, -6, -13, 11, -1)
+polygon = PackedVector2Array(-9, 11, -9, -11, 6, -13, 11, -1)
 metadata/_edit_lock_ = true
 
 [node name="Fragment6" type="RigidBody2D" parent="Fragments"]
@@ -302,7 +302,7 @@ frame = 5
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment6"]
-polygon = PackedVector2Array(-14, 3, 9, -17, 13, 5)
+polygon = PackedVector2Array(-14, 3, 9, -17, 20, -5, 6, 11)
 metadata/_edit_lock_ = true
 
 [node name="Fragment7" type="RigidBody2D" parent="Fragments"]
@@ -320,7 +320,7 @@ frame = 6
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment7"]
-polygon = PackedVector2Array(-19, 7, 7, -10, 10, 11)
+polygon = PackedVector2Array(-19, 7, 7, -10, 10, 11, -2, 3)
 metadata/_edit_lock_ = true
 
 [node name="Fragment8" type="RigidBody2D" parent="Fragments"]
@@ -338,7 +338,7 @@ frame = 7
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment8"]
-polygon = PackedVector2Array(-1, 9, -5, -13, 5, -2)
+polygon = PackedVector2Array(-4, 6, -5, -13, 5, -8, 4, 6)
 metadata/_edit_lock_ = true
 
 [node name="CoverAnimatedSprite" type="AnimatedSprite2D" parent="."]
