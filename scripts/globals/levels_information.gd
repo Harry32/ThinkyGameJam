@@ -18,7 +18,7 @@ var levels : Array[String] = [
 	"res://scenes/levels/pres_cover.tscn",
 	"res://scenes/levels/ref_cover.tscn",
 	"res://scenes/levels/pres_blackhole.tscn",
-	"res://scenes/levels/ref_wormwhole.tscn",
+	"res://scenes/levels/ref_blackhole.tscn",
 	"res://scenes/levels/pres_wormhole.tscn",
 	"res://scenes/levels/ref_wormwhole.tscn"
 ]
