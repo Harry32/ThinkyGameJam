@@ -12,7 +12,8 @@ var levels : Array[String] = [
 	"res://scenes/levels/pres_switch.tscn",
 	"res://scenes/levels/ref_switch.tscn",
 	"res://scenes/levels/pres_button.tscn",
-	"res://scenes/levels/ref_button.tscn"
+	"res://scenes/levels/ref_button.tscn",
+	"res://scenes/levels/pres_field.tscn"
 ]
 var current_level: int = 0
 
