@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=33 format=3 uid="uid://naad70io3bg"]
+[gd_resource type="VisualShader" load_steps=35 format=3 uid="uid://naad70io3bg"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_cp3pu"]
 parameter_name = "Texture2DParameter"
@@ -25,8 +25,17 @@ default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 operator = 1
 
+[sub_resource type="Curve" id="Curve_l44hv"]
+min_value = -1.0
+_data = [Vector2(0, 0.00114679), 0.0, 0.0, 0, 0, Vector2(0.134503, -0.28211), 0.0, 0.0, 0, 0, Vector2(0.28655, 0.448395), 0.0, 0.0, 0, 0, Vector2(0.380117, 0.135321), 0.0, 0.0, 0, 0, Vector2(0.467836, 0.00114679), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_oriab"]
+curve = SubResource("Curve_l44hv")
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ime1h"]
 expanded_output_ports = [0]
+texture = SubResource("CurveTexture_oriab")
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1s48w"]
 input_name = "screen_uv"
@@ -258,6 +267,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-932.479, -275.171)
 mode = 1
 flags/unshaded = true
 flags/light_only = false
@@ -316,7 +326,7 @@ nodes/fragment/8/position = Vector2(-780, 300)
 nodes/fragment/12/node = SubResource("VisualShaderNodeTexture2DParameter_cp3pu")
 nodes/fragment/12/position = Vector2(-1180, 560)
 nodes/fragment/13/node = SubResource("VisualShaderNodeTexture_ud0fa")
-nodes/fragment/13/position = Vector2(-540, 300)
+nodes/fragment/13/position = Vector2(-540, 280)
 nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_dyx80")
 nodes/fragment/14/position = Vector2(-300, 400)
 nodes/fragment/15/node = SubResource("VisualShaderNodeVectorFunc_qic08")
@@ -326,5 +336,5 @@ nodes/fragment/16/position = Vector2(-100, 520)
 nodes/fragment/17/node = SubResource("VisualShaderNodeVectorOp_0xydn")
 nodes/fragment/17/position = Vector2(80, 180)
 nodes/fragment/18/node = SubResource("VisualShaderNodeTexture_ime1h")
-nodes/fragment/18/position = Vector2(-540, 560)
+nodes/fragment/18/position = Vector2(-540, 640)
 nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 7, 0, 8, 0, 6, 0, 7, 1, 5, 0, 7, 0, 12, 0, 13, 2, 7, 0, 15, 0, 15, 0, 16, 1, 14, 0, 16, 0, 2, 0, 17, 0, 16, 0, 17, 1, 8, 0, 13, 0, 17, 0, 3, 0, 8, 0, 18, 0, 18, 1, 14, 0)

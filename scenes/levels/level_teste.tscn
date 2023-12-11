@@ -13,4 +13,4 @@ position = Vector2(225, 947)
 position = Vector2(1696, 939)
 
 [node name="BlackHole" parent="." index="5" instance=ExtResource("3_qwdvn")]
-position = Vector2(525, 279)
+position = Vector2(649, 661)
