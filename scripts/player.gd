@@ -198,11 +198,11 @@ func update_facing_direction():
 
 func move_to(movement_position: Vector2):
 	deactivate()
-	#position.y = move_toward(position.y, movement_position.y, SPEED)
-	if GravityInformation.get_up_direction().x != 0:
+
+	if GravityInformation.get_up_direction().x == 0:
 		position.x = move_toward(position.x, movement_position.x, SPEED)
 
-	if GravityInformation.get_up_direction().y != 0:
+	if GravityInformation.get_up_direction().y == 0:
 		position.y = move_toward(position.y, movement_position.y, SPEED)
 
 
