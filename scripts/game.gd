@@ -19,4 +19,4 @@ func _input(event):
 func change_level(level: String):
 	if get_child_count() > 1:
 		get_child(1).queue_free()
-	add_child(load(level).instantiate())
+	call_deferred("add_child", load(level).instantiate())
