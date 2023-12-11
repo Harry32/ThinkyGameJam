@@ -5,9 +5,9 @@ inputs:
     description: 'Type of build, default is debug'
     required: true
     default: 'debug'
+    type: string
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.godot_export_type }}
-    - ${{ secrets.butler_api_key }}
