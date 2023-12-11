@@ -1,14 +1,13 @@
-class_name options_screen
 extends Control
 
-@onready var exit_button = $MarginContainer/VBoxContainer/exit_button as Button
+var main_screen = preload("res://scenes/main_screen/main_screen.tscn")
+@onready var exit_button = $MarginContainer/VBoxContainer/ExitButton
 
-signal exit_options_screen
+signal options_screen_events(scene: PackedScene)
 
 func _ready():
-	exit_button.button_down.connect(on_exit_pressed)
-	set_process(false)
+	exit_button.grab_focus()
 
-func on_exit_pressed() -> void:
-	exit_options_screen.emit()
-	set_process(false)
+
+func _on_exit_button_pressed():
+	options_screen_events.emit(main_screen)
