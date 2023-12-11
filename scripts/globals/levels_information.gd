@@ -7,7 +7,9 @@ signal change_level(nextLevel: String)
 var levels : Array[String] = [
 	"res://scenes/levels/tutorial.tscn",
 	"res://scenes/levels/ref_gravity.tscn",
-	"res://scenes/levels/pres_platform.tscn"
+	"res://scenes/levels/pres_platform.tscn",
+	"res://scenes/levels/ref_platform.tscn",
+	"res://scenes/levels/pres_switch.tscn"
 ]
 var current_level: int = 0
 

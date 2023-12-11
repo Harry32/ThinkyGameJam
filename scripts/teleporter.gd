@@ -50,6 +50,10 @@ func toggle_teleporter(leftOccluderPosition: Vector2, rightOccluderPosition: Vec
 
 func _on_teleport_area_body_entered(body):
 	player = body
+
+	if GravityInformation.get_up_direction() != $RayCast2D.target_position:
+		GravityInformation.update_up_direction($RayCast2D.target_position)
+
 	player.move_to(position)
 
 	if GameInformation.is_debug_mode():
