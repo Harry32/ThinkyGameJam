@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckdm4ponox4x3"]
 
-[ext_resource type="Script" path="res://scenes/objects/platform_rails.gd" id="1_md32n"]
+[ext_resource type="Script" path="res://scripts/platform_rails.gd" id="1_md32n"]
 [ext_resource type="Texture2D" uid="uid://nyjqe54sh66f" path="res://graphics/objects/Rail.png" id="1_td0la"]
 
 [node name="PlatformRails" type="Node2D"]
