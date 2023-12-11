@@ -7,6 +7,7 @@ var leftOccluderOpenPosition: Vector2
 var rightOccluderOpenPosition: Vector2
 var isTurnedOn: bool = false
 var player: CharacterBody2D
+var upDirection: Vector2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,9 @@ func _ready():
 	rightOccluderClosePosition = $RightLightOccluder.position
 	$BackPointLight.enabled = false
 	$FrontPointLight.enabled = false
+
+	var newDirection = $RayCast2D.target_position.rotated(rotation)
+	upDirection = Vector2(snapped(newDirection.x, 0.0001), snapped(newDirection.y, 0.0001))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,8 +55,8 @@ func toggle_teleporter(leftOccluderPosition: Vector2, rightOccluderPosition: Vec
 func _on_teleport_area_body_entered(body):
 	player = body
 
-	if GravityInformation.get_up_direction() != $RayCast2D.target_position:
-		GravityInformation.update_up_direction($RayCast2D.target_position)
+	if GravityInformation.get_up_direction() != upDirection:
+		GravityInformation.update_up_direction(upDirection)
 
 	player.move_to(position)
 
