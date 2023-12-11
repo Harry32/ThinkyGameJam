@@ -38,7 +38,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		jump()
 
-	if Input.is_action_pressed("Gravity"):
+	if Input.is_action_pressed("Gravity") and active:
 		change_up_direction()
 	else:
 		movement()

@@ -6,12 +6,12 @@ signal change_level(nextLevel: String)
 
 var levels : Array[String] = [
 	"res://scenes/levels/tutorial.tscn",
-	"res://scenes/levels/button_pres.tscn"
+	"res://scenes/levels/ref_gravity.tscn"
 ]
 var current_level: int = 0
 
 func next_level():
-	if current_level < levels.size():
+	if current_level < levels.size() -1:
 		current_level += 1
 		change_level.emit(levels[current_level])
 

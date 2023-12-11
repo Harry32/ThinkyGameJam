@@ -1,4 +1,4 @@
-extends Node2D
+extends LevelBase
 
 
 func _process(_delta):

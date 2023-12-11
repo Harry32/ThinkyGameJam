@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://gl23m3rg7jly"]
-
-[ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="1_a57ve"]
-
-[node name="ButtonPres" instance=ExtResource("1_a57ve")]
-
-[node name="Player" parent="." index="2"]
-position = Vector2(439, 976)

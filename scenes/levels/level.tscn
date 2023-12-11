@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://c8y7wph201vx4"]
+[gd_scene load_steps=23 format=3 uid="uid://c8y7wph201vx4"]
 
 [ext_resource type="PackedScene" uid="uid://crdgt41diya2q" path="res://scenes/player/player.tscn" id="1_2inqr"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_co876"]
 [ext_resource type="Texture2D" uid="uid://1vp7khvmokw5" path="res://graphics/tilesets/tile_sheet_288x288.png" id="2_a1k0y"]
 [ext_resource type="Texture2D" uid="uid://cb4jhjsgor1hr" path="res://graphics/tilesets/Lab Tile Sheet - 352x320.png" id="2_tagdo"]
 
@@ -661,6 +662,7 @@ sources/1 = SubResource("TileSetAtlasSource_6gd5q")
 
 [node name="Level" type="Node2D"]
 process_mode = 1
+script = ExtResource("1_co876")
 
 [node name="DirectionalLight" type="DirectionalLight2D" parent="."]
 energy = 0.5
