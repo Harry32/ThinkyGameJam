@@ -14,6 +14,9 @@ func _input(event):
 			$PauseScreen.show()
 		else:
 			$PauseScreen.hide()
+			
+	if event.is_action_pressed("Restart"):
+		LevelsInformation.restart_level()
 
 
 func change_level(level: String):

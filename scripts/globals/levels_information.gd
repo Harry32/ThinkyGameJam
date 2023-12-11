@@ -6,7 +6,8 @@ signal change_level(nextLevel: String)
 
 var levels : Array[String] = [
 	"res://scenes/levels/tutorial.tscn",
-	"res://scenes/levels/ref_gravity.tscn"
+	"res://scenes/levels/ref_gravity.tscn",
+	"res://scenes/levels/pres_platform.tscn"
 ]
 var current_level: int = 0
 
@@ -24,4 +25,7 @@ func previous_level():
 
 func start_game():
 	current_level = 0
+	change_level.emit(levels[current_level])
+
+func restart_level():
 	change_level.emit(levels[current_level])
