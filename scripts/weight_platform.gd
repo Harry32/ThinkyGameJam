@@ -14,6 +14,8 @@ var originalPosition : Vector2
 var destinationPosition : Vector2
 var movementPosition: Vector2
 
+var tween: Tween
+
 
 func _ready():
 	originalPosition = position
@@ -62,8 +64,11 @@ func _on_area_2d_body_exited(body):
 ## A tween is setted to gradually change destinationPosition
 func move_platform(destination: Vector2):
 	var duration = int(destination.length() / float(speed * ($AnimatedSprite.scale.y/2)))
-	
-	var tween = get_tree().create_tween()
+
+	if tween != null:
+		tween.kill()
+
+	tween = get_tree().create_tween()
 	tween.tween_property(self, "movementPosition", destination, duration)
 	tween.connect("finished", stop_animation)
 
