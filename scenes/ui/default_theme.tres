@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://lpfisjaosrqq"]
+
+[ext_resource type="FontFile" uid="uid://q0ai3wfelumn" path="res://graphics/fonts/FutureMillennium.ttf" id="1_c4ypr"]
+
+[resource]
+default_font = ExtResource("1_c4ypr")

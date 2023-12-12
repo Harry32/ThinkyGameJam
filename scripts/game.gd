@@ -8,9 +8,7 @@ func _ready():
 
 func _input(event):
 	if LevelsInformation.enable_ui() and event.is_action_pressed("Pause"):
-		var current_status = get_tree().paused
-		get_tree().paused = not current_status
-		if not current_status:
+		if not get_tree().paused:
 			$PauseScreen.show()
 		else:
 			$PauseScreen.hide()
@@ -20,6 +18,7 @@ func _input(event):
 
 
 func change_scene(scene: String):
+	$PauseScreen.hide()
 	if get_child_count() > 1:
 		get_child(1).queue_free()
 	call_deferred("add_child", load(scene).instantiate())

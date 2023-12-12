@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://1mka5jp12ppe"]
 
 [ext_resource type="Script" path="res://scripts/options_screen.gd" id="1_h1eq7"]
-[ext_resource type="FontFile" uid="uid://q0ai3wfelumn" path="res://graphics/fonts/FutureMillennium.ttf" id="2_g7jii"]
+[ext_resource type="Theme" uid="uid://lpfisjaosrqq" path="res://scenes/ui/default_theme.tres" id="1_hv5nt"]
 
 [node name="OptionsScreen" type="Control"]
 layout_mode = 3
@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_hv5nt")
 script = ExtResource("1_h1eq7")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -27,11 +28,24 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/font = ExtResource("2_g7jii")
 theme_override_font_sizes/font_size = 70
 text = "OPTIONS NESSA PORRA"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 30
 
 [node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -39,8 +53,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_g7jii")
 theme_override_font_sizes/font_size = 50
 text = "VOLTAR NESSA PORRA"
 
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
