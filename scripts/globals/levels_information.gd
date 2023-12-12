@@ -33,6 +33,8 @@ func next_level():
 		current_level += 1
 		current_scene = levels[current_level]
 		change_scene.emit(levels[current_level])
+	else:
+		start_screen()
 
 
 func previous_level():

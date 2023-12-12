@@ -35,8 +35,8 @@ position = Vector2(608, 640)
 door = NodePath("../Door")
 
 [node name="GravitySwitch2" parent="." index="10" node_paths=PackedStringArray("door") instance=ExtResource("5_x68cu")]
-position = Vector2(447, 157)
-rotation = 1.5708
+position = Vector2(448, 156)
+rotation = -1.5708
 door = NodePath("../Door2")
 
 [node name="GravitySwitch3" parent="." index="11" node_paths=PackedStringArray("door") instance=ExtResource("5_x68cu")]
