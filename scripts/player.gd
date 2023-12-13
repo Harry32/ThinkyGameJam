@@ -153,7 +153,7 @@ func update_animation():
 			if state == "Idle":
 				$AnimationTree.set("parameters/Move/blend_position", direction)
 
-			if state == "Fall" and velocity.y == 0:
+			if state == "Fall" and ((GravityInformation.get_up_direction().y != 0 and velocity.y == 0) or (GravityInformation.get_up_direction().x != 0 and velocity.x == 0)):
 				state = "Landing"
 
 			if state == "Landing":
@@ -168,17 +168,18 @@ func update_animation():
 				animation_playback.travel("Fall")
 			if state == "Jump" and animation_playback.get_current_node() != "Jump":
 				animation_playback.travel("Jump")
-			if velocity.y > 0 and state == "Jump":
-				state = "Fall"
-				animation_playback.travel("Fall")
+			if state == "Jump":
+				if (GravityInformation.get_up_direction().y < 0 and velocity.y > 0) or (GravityInformation.get_up_direction().y > 0 and velocity.y < 0) or (GravityInformation.get_up_direction().x < 0 and velocity.x > 0) or (GravityInformation.get_up_direction().x > 0 and velocity.x < 0):
+					state = "Fall"
+					animation_playback.travel("Fall")
 
 		if state == "A.Power":
 			state = "H.Power"
 			animation_playback.travel("Activating Power")
-		
+
 		if state == "H.Power":
 			animation_playback.travel("Holding Power")
-		
+
 		if (state == "D.Power" or state == "H.Power" or state == "A.Power") and not Input.is_action_pressed("Gravity"):
 			state = "Fall"
 			if is_on_floor():
