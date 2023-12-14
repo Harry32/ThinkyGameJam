@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://p45e7cpriw7g"]
+[gd_scene load_steps=14 format=3 uid="uid://p45e7cpriw7g"]
 
 [ext_resource type="Script" path="res://scripts/simple_button.gd" id="1_djjcu"]
 [ext_resource type="Texture2D" uid="uid://bmu84hdwc115s" path="res://graphics/objects/Button.png" id="2_0japj"]
+[ext_resource type="AudioStream" uid="uid://c0usubglnt6xa" path="res://sounds/sfx/DM-CGS-20.wav" id="3_dc2ic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibixc"]
 size = Vector2(64, 50)
@@ -90,6 +91,10 @@ sprite_frames = SubResource("SpriteFrames_ag4jp")
 frame = 1
 frame_progress = 0.344841
 speed_scale = 1.5
+
+[node name="PressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dc2ic")
+volume_db = -5.621
 
 [connection signal="body_entered" from="ButtonArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="ButtonArea" to="." method="_on_area_2d_body_exited"]

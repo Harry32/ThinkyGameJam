@@ -19,6 +19,7 @@ func _on_area_2d_body_entered(body):
 		$ButtonAnimatedSprite.play()
 		var tween = create_tween()
 		tween.tween_property($ButtonCollisionShape, "position", colliderEndPosition, 0.5)
+		$PressSound.play()
 		door.open()
 
 
@@ -28,4 +29,5 @@ func _on_area_2d_body_exited(body):
 		$ButtonAnimatedSprite.play_backwards()
 		var tween = create_tween()
 		tween.tween_property($ButtonCollisionShape, "position", colliderStartPosition, 1)
+		$PressSound.play()
 		door.close()

@@ -23,3 +23,6 @@ shape = SubResource("RectangleShape2D_vstl0")
 scale = Vector2(2, 2)
 texture = ExtResource("2_ofnsq")
 offset = Vector2(0, -5.5)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -1)

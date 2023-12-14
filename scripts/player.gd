@@ -231,6 +231,8 @@ func teleport(leaving: bool = true):
 		else:
 			tween.tween_method(set_shader_progress, 1.0, 0.0, 2)
 			tween.connect("finished", activate)
+			await get_tree().create_timer(1.2).timeout
+		$TeleportSound.play()
 
 
 func set_shader_progress(progress: float):

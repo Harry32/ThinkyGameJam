@@ -66,6 +66,7 @@ func _on_teleport_area_body_entered(body):
 		var tween = create_tween().parallel()
 		tween.tween_property($FrontPointLight, "energy", 5, 2)
 		tween.connect("finished", activate_teleport)
+		$EffectSound.play()
 
 
 func activate_teleport():

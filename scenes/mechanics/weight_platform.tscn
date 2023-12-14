@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://drabor3uv3ars"]
+[gd_scene load_steps=11 format=3 uid="uid://drabor3uv3ars"]
 
 [ext_resource type="Script" path="res://scripts/weight_platform.gd" id="1_1iyrv"]
 [ext_resource type="Texture2D" uid="uid://x3hjs3rb2bvl" path="res://graphics/objects/Weight Platform.png" id="2_lbs7r"]
 [ext_resource type="PackedScene" uid="uid://d3lvv6co1ketv" path="res://scenes/objects/monitor.tscn" id="3_r3w8w"]
+[ext_resource type="AudioStream" uid="uid://skv2ugmiw5m1" path="res://sounds/sfx/DM-CGS-28.wav" id="4_u21hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouxgc"]
 size = Vector2(192, 34)
@@ -64,6 +65,10 @@ position = Vector2(79, -46)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jslbd")
 animation = &"Move"
+
+[node name="UpdateSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u21hi")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
