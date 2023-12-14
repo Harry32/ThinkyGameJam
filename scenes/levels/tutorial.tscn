@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgbwf7lu4akil"]
+
+[ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="1_r0cuf"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="2_ghq07"]
+[ext_resource type="PackedScene" uid="uid://dbbqs15a4bmc4" path="res://scenes/ui/controller_tips.tscn" id="3_h83ib"]
+[ext_resource type="PackedScene" uid="uid://osp2udv5iiwm" path="res://scenes/objects/teleporter.tscn" id="4_q1cif"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lbnjl"]
+b = Vector2(0, 300)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_k4232"]
+b = Vector2(0, 500)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_kh2uj"]
+b = Vector2(0, 180)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1oqsh"]
+b = Vector2(400, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_qut6p"]
+b = Vector2(0, 180)
+
+[node name="Tutorial" instance=ExtResource("1_r0cuf")]
+script = ExtResource("2_ghq07")
+
+[node name="TileMap" parent="." index="1"]
+layer_1/tile_data = PackedInt32Array(327680, 393217, 0, 327685, 458753, 0, 327686, 458753, 0, 327687, 458753, 0, 327688, 458753, 0, 327692, 458753, 0, 327691, 458753, 0, 327690, 458753, 0, 327689, 458753, 0, 327681, 458753, 0, 327682, 458753, 0, 327683, 458753, 0, 327684, 458753, 0, 327693, 458753, 0, 327694, 458753, 0, 327695, 393217, 1, 327696, 393217, 1, 327697, 393217, 1, 327698, 393217, 1, 262159, 327681, 1, 262162, 458753, 1, 262161, 393217, 1, 262160, 393217, 1, 327699, 458753, 0, 327700, 458753, 0, 327701, 458753, 0, 327702, 524289, 0, 196624, 458753, 0, 196625, 458753, 0, 196623, 393217, 0, 196626, 524289, 0, 720908, 458753, 1, 655372, 458753, 1, 589836, 458753, 1, 589835, 393217, 1, 524299, 458753, 0, 524300, 524289, 0, 524298, 458753, 0, 524297, 458753, 0, 524296, 458753, 0, 524295, 458753, 0, 524294, 393217, 0, 589834, 393217, 1, 589833, 393217, 1, 589832, 393217, 1, 589831, 393217, 1, 589830, 327681, 1, 655367, 393217, 1, 655368, 393217, 1, 655369, 393217, 1, 655370, 393217, 1, 655371, 393217, 1, 720907, 393217, 1, 720906, 393217, 1, 720905, 393217, 1, 720904, 393217, 1, 655366, 327681, 1, 720902, 327681, 1, 720903, 393217, 1, 851997, 524289, 0, 851996, 458753, 0, 851995, 458753, 0, 851994, 458753, 0, 851993, 458753, 0, 851992, 458753, 0, 851991, 458753, 0, 851990, 458753, 0, 851989, 458753, 0, 851988, 458753, 0, 851987, 458753, 0, 851986, 458753, 0, 851985, 458753, 0, 851984, 458753, 0, 851983, 458753, 0, 851982, 458753, 0, 851981, 458753, 0, 786444, 458753, 1, 851980, 393217, 1, 851979, 393217, 1, 851978, 393217, 1, 851977, 393217, 1, 851976, 393217, 1, 851975, 393217, 1, 786439, 393217, 1, 786440, 393217, 1, 786441, 393217, 1, 786442, 393217, 1, 786443, 393217, 1, 786438, 327681, 1, 851974, 327681, 1)
+
+[node name="Player" parent="." index="2"]
+position = Vector2(161, 248)
+
+[node name="ControllerTips" parent="." index="4" instance=ExtResource("3_h83ib")]
+
+[node name="Checkpoint1" type="Area2D" parent="." index="5"]
+position = Vector2(449, 33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1" index="0"]
+shape = SubResource("SegmentShape2D_lbnjl")
+
+[node name="Checkpoint2" type="Area2D" parent="." index="6"]
+position = Vector2(1152, 371)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2" index="0"]
+shape = SubResource("SegmentShape2D_k4232")
+
+[node name="Checkpoint3" type="Area2D" parent="." index="7"]
+position = Vector2(611, 377)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3" index="0"]
+position = Vector2(0, -11)
+shape = SubResource("SegmentShape2D_kh2uj")
+
+[node name="Checkpoint4" type="Area2D" parent="." index="8"]
+position = Vector2(24, 704)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint4" index="0"]
+shape = SubResource("SegmentShape2D_1oqsh")
+
+[node name="Checkpoint5" type="Area2D" parent="." index="9"]
+position = Vector2(1701, 894)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint5" index="0"]
+position = Vector2(0, -10)
+shape = SubResource("SegmentShape2D_qut6p")
+
+[node name="Teleporter" parent="." index="10" instance=ExtResource("4_q1cif")]
+position = Vector2(1791, 940)
+
+[connection signal="body_entered" from="Checkpoint1" to="." method="_on_checkpoint_1_body_entered"]
+[connection signal="body_entered" from="Checkpoint2" to="." method="_on_checkpoint_2_body_entered"]
+[connection signal="body_entered" from="Checkpoint3" to="." method="_on_checkpoint_3_body_entered"]
+[connection signal="body_entered" from="Checkpoint4" to="." method="_on_checkpoint_4_body_entered"]
+[connection signal="body_entered" from="Checkpoint5" to="." method="_on_checkpoint_5_body_entered"]

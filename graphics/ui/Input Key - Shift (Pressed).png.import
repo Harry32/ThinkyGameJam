@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nyjqe54sh66f"
-path="res://.godot/imported/Trail.png-ca843e8d122b72e50d1ed827397db069.ctex"
+uid="uid://dpxwn3hbhh3gt"
+path="res://.godot/imported/Input Key - Shift (Pressed).png-83750284dd12d0ae2b5e47521fbc2ef1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/objects/Trail.png"
-dest_files=["res://.godot/imported/Trail.png-ca843e8d122b72e50d1ed827397db069.ctex"]
+source_file="res://graphics/ui/Input Key - Shift (Pressed).png"
+dest_files=["res://.godot/imported/Input Key - Shift (Pressed).png-83750284dd12d0ae2b5e47521fbc2ef1.ctex"]
 
 [params]
 

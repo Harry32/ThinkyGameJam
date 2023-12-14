@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx18e4piaqadk"
-path="res://.godot/imported/pillars.png-3824750000042d1d3764c693c39db29a.ctex"
+uid="uid://b8qsewvrmt6hp"
+path="res://.godot/imported/Input Key - Left.png-d12f36eb715902297f054090f5211f4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/pillars.png"
-dest_files=["res://.godot/imported/pillars.png-3824750000042d1d3764c693c39db29a.ctex"]
+source_file="res://graphics/ui/Input Key - Left.png"
+dest_files=["res://.godot/imported/Input Key - Left.png-d12f36eb715902297f054090f5211f4d.ctex"]
 
 [params]
 

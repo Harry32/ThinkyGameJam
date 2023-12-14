@@ -6,30 +6,31 @@ extends StaticBody2D
 @export var movementDistance : float = 200
 ## Set the platform's speed
 @export var speed : float = 300
+## Set the platform's start position
+@export var startDown : bool = false
 
 var currentWeight : float = 0;
 var originalPosition : Vector2
 var destinationPosition : Vector2
 var movementPosition: Vector2
 
+var tween: Tween
+
 
 func _ready():
 	originalPosition = position
 	destinationPosition = Vector2(originalPosition.x, originalPosition.y + movementDistance)
 	movementPosition = position
-	
+
 	update_label(false)
+
+	if startDown:
+		position = destinationPosition
+		movementPosition = destinationPosition
 
 
 func _physics_process(_delta):
 	position = position.lerp(movementPosition, 1)
-	
-	#if position.y == movementPosition.y:
-		#print("pos %f" % position.y)
-		#print("des %f" % destinationPosition.y)
-		#print("org %f" % originalPosition.y)
-		#print("mov %f" % movementPosition.y)
-		#stop_animation()
 
 
 ## At every new RigidBody2D on the platform the currentWeight is updated
@@ -40,9 +41,10 @@ func _on_area_2d_body_entered(body):
 
 		update_label()
 
-		if(preWeight < necessaryWeigth and currentWeight >= necessaryWeigth):
-			move_platform(destinationPosition)
-			play_animation(false)
+		if preWeight < necessaryWeigth and currentWeight >= necessaryWeigth:
+			if position != destinationPosition:
+				move_platform(destinationPosition)
+				play_animation(false)
 
 
 ## At every new RigidBody2D that leaves the platform the currentWeight is updated
@@ -53,16 +55,20 @@ func _on_area_2d_body_exited(body):
 
 		update_label()
 
-		if(preWeight >= necessaryWeigth and currentWeight < necessaryWeigth):
-			move_platform(originalPosition)
-			play_animation(true)
+		if preWeight >= necessaryWeigth and currentWeight < necessaryWeigth:
+			if position != originalPosition:
+				move_platform(originalPosition)
+				play_animation(true)
 
 
 ## A tween is setted to gradually change destinationPosition
 func move_platform(destination: Vector2):
 	var duration = int(destination.length() / float(speed * ($AnimatedSprite.scale.y/2)))
-	
-	var tween = get_tree().create_tween()
+
+	if tween != null:
+		tween.kill()
+
+	tween = get_tree().create_tween()
 	tween.tween_property(self, "movementPosition", destination, duration)
 	tween.connect("finished", stop_animation)
 

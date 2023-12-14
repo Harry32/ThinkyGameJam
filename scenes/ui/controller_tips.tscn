@@ -1,0 +1,230 @@
+[gd_scene load_steps=19 format=3 uid="uid://dbbqs15a4bmc4"]
+
+[ext_resource type="Script" path="res://scripts/controller_tips.gd" id="1_h72xu"]
+[ext_resource type="Texture2D" uid="uid://crub0b4bkpwbe" path="res://graphics/ui/Input Key - A.png" id="1_oekvy"]
+[ext_resource type="FontFile" uid="uid://q0ai3wfelumn" path="res://graphics/fonts/FutureMillennium.ttf" id="1_ybo2b"]
+[ext_resource type="Texture2D" uid="uid://bhhamlggww818" path="res://graphics/ui/Input Key - D.png" id="2_pd7sp"]
+[ext_resource type="Texture2D" uid="uid://b8qsewvrmt6hp" path="res://graphics/ui/Input Key - Left.png" id="4_2pqga"]
+[ext_resource type="Texture2D" uid="uid://bv6mmfwceassa" path="res://graphics/ui/Input Key - Right.png" id="5_bqax1"]
+[ext_resource type="Texture2D" uid="uid://b3mayrpxpkp7g" path="res://graphics/ui/Input Key - A (Pressed).png" id="5_t0406"]
+[ext_resource type="Texture2D" uid="uid://3lwrm7ksgemk" path="res://graphics/ui/Input Key - D (Pressed).png" id="6_ucwkw"]
+[ext_resource type="Texture2D" uid="uid://dc7ugncpat1w6" path="res://graphics/ui/Input Key - Left (Pressed).png" id="9_hbfi0"]
+[ext_resource type="Texture2D" uid="uid://4aw2rl7705t2" path="res://graphics/ui/Input Key - Right (Pressed).png" id="10_r8bo6"]
+[ext_resource type="Texture2D" uid="uid://6qpcw0to4ooh" path="res://graphics/ui/Input Key - Space.png" id="11_m3oot"]
+[ext_resource type="Texture2D" uid="uid://e2elho4po1dm" path="res://graphics/ui/Input Key - Space (Pressed).png" id="12_uqcu6"]
+[ext_resource type="Texture2D" uid="uid://bl7wfbb3ol4ds" path="res://graphics/ui/Input Key - Shift.png" id="13_mv8pc"]
+[ext_resource type="Texture2D" uid="uid://c07mhlikf86t8" path="res://graphics/ui/Input Key - W.png" id="14_7stff"]
+[ext_resource type="Texture2D" uid="uid://dpxwn3hbhh3gt" path="res://graphics/ui/Input Key - Shift (Pressed).png" id="15_8owkb"]
+[ext_resource type="Texture2D" uid="uid://bq1ly31p6sx6i" path="res://graphics/ui/Input Key - W (Pressed).png" id="16_xr5oa"]
+[ext_resource type="Texture2D" uid="uid://glaqimq2lg5u" path="res://graphics/ui/Input Key - Up.png" id="17_6h7di"]
+[ext_resource type="Texture2D" uid="uid://dw0bg6eiu3nc4" path="res://graphics/ui/Input Key - Up (Pressed).png" id="18_fepxf"]
+
+[node name="ControllerTips" type="CanvasLayer"]
+script = ExtResource("1_h72xu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 118.0
+offset_bottom = 162.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Text" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Text"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_ybo2b")
+theme_override_font_sizes/font_size = 15
+text = "Move"
+
+[node name="Keys11" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SpaceLabel" type="Label" parent="VBoxContainer/Keys11"]
+layout_mode = 2
+text = "     "
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/Keys11"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_oekvy")
+stretch_mode = 2
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/Keys11"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_ucwkw")
+stretch_mode = 2
+
+[node name="Keys12" type="HFlowContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SpaceLabel" type="Label" parent="VBoxContainer/Keys12"]
+layout_mode = 2
+text = "     "
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/Keys12"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("5_t0406")
+stretch_mode = 2
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/Keys12"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_pd7sp")
+stretch_mode = 2
+
+[node name="Keys21" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SpaceLabel" type="Label" parent="VBoxContainer/Keys21"]
+layout_mode = 2
+text = "     "
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/Keys21"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_2pqga")
+stretch_mode = 2
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/Keys21"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("10_r8bo6")
+stretch_mode = 2
+
+[node name="Keys22" type="HFlowContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SpaceLabel" type="Label" parent="VBoxContainer/Keys22"]
+layout_mode = 2
+text = "     "
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/Keys22"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("9_hbfi0")
+stretch_mode = 2
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/Keys22"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("5_bqax1")
+stretch_mode = 2
+
+[node name="LongKey1" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Key" type="TextureRect" parent="VBoxContainer/LongKey1"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("11_m3oot")
+stretch_mode = 2
+
+[node name="LongKey2" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Key" type="TextureRect" parent="VBoxContainer/LongKey2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("12_uqcu6")
+stretch_mode = 2
+
+[node name="ComboKeys11" type="HFlowContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/ComboKeys11"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("13_mv8pc")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ComboKeys11"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_ybo2b")
+theme_override_font_sizes/font_size = 15
+text = "+"
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/ComboKeys11"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("14_7stff")
+stretch_mode = 2
+
+[node name="ComboKeys12" type="HFlowContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/ComboKeys12"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("15_8owkb")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ComboKeys12"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_ybo2b")
+theme_override_font_sizes/font_size = 15
+text = "+"
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/ComboKeys12"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("16_xr5oa")
+stretch_mode = 2
+
+[node name="ComboKeys21" type="HFlowContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/ComboKeys21"]
+layout_mode = 2
+texture = ExtResource("13_mv8pc")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ComboKeys21"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_ybo2b")
+theme_override_font_sizes/font_size = 15
+text = "+"
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/ComboKeys21"]
+layout_mode = 2
+texture = ExtResource("17_6h7di")
+stretch_mode = 2
+
+[node name="ComboKeys22" type="HFlowContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Key1" type="TextureRect" parent="VBoxContainer/ComboKeys22"]
+layout_mode = 2
+texture = ExtResource("15_8owkb")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ComboKeys22"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_ybo2b")
+theme_override_font_sizes/font_size = 15
+text = "+"
+
+[node name="Key2" type="TextureRect" parent="VBoxContainer/ComboKeys22"]
+layout_mode = 2
+texture = ExtResource("18_fepxf")
+stretch_mode = 2
+
+[node name="Timer1s" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer1s" to="." method="_on_timer_1s_timeout"]
