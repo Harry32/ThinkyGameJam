@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx18e4piaqadk"
-path="res://.godot/imported/pillars.png-3824750000042d1d3764c693c39db29a.ctex"
+uid="uid://bvn6dm1cba501"
+path="res://.godot/imported/Black Hole.png-795528ed7d56ead5602286bc1e8e7634.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/pillars.png"
-dest_files=["res://.godot/imported/pillars.png-3824750000042d1d3764c693c39db29a.ctex"]
+source_file="res://graphics/objects/Black Hole.png"
+dest_files=["res://.godot/imported/Black Hole.png-795528ed7d56ead5602286bc1e8e7634.ctex"]
 
 [params]
 

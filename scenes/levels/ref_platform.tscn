@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4ta33e7ktlqr"]
+[gd_scene load_steps=6 format=3 uid="uid://c4ta33e7ktlqr"]
 
 [ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="1_3k27u"]
 [ext_resource type="PackedScene" uid="uid://osp2udv5iiwm" path="res://scenes/objects/teleporter.tscn" id="2_nodpb"]
 [ext_resource type="PackedScene" uid="uid://drabor3uv3ars" path="res://scenes/mechanics/weight_platform.tscn" id="2_tswn4"]
+[ext_resource type="PackedScene" uid="uid://ckdm4ponox4x3" path="res://scenes/objects/platform_rails.tscn" id="3_mr80c"]
 [ext_resource type="PackedScene" uid="uid://dguxwd8kbvmuh" path="res://scenes/objects/box.tscn" id="3_xk2xx"]
 
 [node name="RefPlatform" instance=ExtResource("1_3k27u")]
@@ -16,13 +17,17 @@ position = Vector2(609, 184)
 [node name="Teleporter" parent="." index="4" instance=ExtResource("2_nodpb")]
 position = Vector2(1633, 800)
 
-[node name="WeightPlatform" parent="." index="5" instance=ExtResource("2_tswn4")]
+[node name="PlatformRails" parent="." index="5" instance=ExtResource("3_mr80c")]
+position = Vector2(1184, 224)
+height = 11
+
+[node name="WeightPlatform" parent="." index="6" instance=ExtResource("2_tswn4")]
 position = Vector2(1184, 256)
 necessaryWeigth = 2.0
 movementDistance = 640.0
 
-[node name="Box" parent="." index="6" instance=ExtResource("3_xk2xx")]
+[node name="Box" parent="." index="7" instance=ExtResource("3_xk2xx")]
 position = Vector2(864, 235)
 
-[node name="Box2" parent="." index="7" instance=ExtResource("3_xk2xx")]
+[node name="Box2" parent="." index="8" instance=ExtResource("3_xk2xx")]
 position = Vector2(288, 235)

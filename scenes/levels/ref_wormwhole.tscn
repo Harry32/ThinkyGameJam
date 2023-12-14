@@ -14,39 +14,53 @@ position = Vector2(196, 376)
 
 [node name="Wormhole" parent="." index="4" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(584, 291)
+rotation = -0.359538
 sibling = NodePath("../Wormhole5")
 
 [node name="Wormhole2" parent="." index="5" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(205, 786)
+rotation = 1.21999
+scale = Vector2(-1, 1)
 sibling = NodePath("../Wormhole")
 
 [node name="Wormhole3" parent="." index="6" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(1638, 225)
+rotation = 1.79594
+scale = Vector2(-1, 1)
 sibling = NodePath("../Wormhole6")
 
 [node name="Wormhole4" parent="." index="7" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(1648, 853)
+rotation = -1.02102
 sibling = NodePath("../Wormhole8")
 
 [node name="Wormhole5" parent="." index="8" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(1270, 203)
+rotation = 0.790634
+scale = Vector2(-1, 1)
 sibling = NodePath("../Wormhole")
 
 [node name="Wormhole6" parent="." index="9" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(916, 422)
+rotation = -0.502655
 sibling = NodePath("../Wormhole3")
 
 [node name="Wormhole7" parent="." index="10" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(1640, 534)
+rotation = -1.93906
 sibling = NodePath("../Wormhole2")
 gravityForce = 50.0
 
 [node name="Wormhole8" parent="." index="11" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(908, 725)
+rotation = 0.401426
+scale = Vector2(-1, 1)
 sibling = NodePath("../Wormhole4")
 
 [node name="Wormhole9" parent="." index="12" node_paths=PackedStringArray("sibling") instance=ExtResource("2_44ayq")]
 position = Vector2(615, 942)
+rotation = 0.359538
+scale = Vector2(-1, 1)
 sibling = NodePath("../Wormhole")
 
 [node name="Teleporter" parent="." index="13" instance=ExtResource("3_t417t")]
