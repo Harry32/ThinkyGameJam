@@ -14,6 +14,7 @@ var direction: float = 0
 var active: bool = true
 var tween: Tween
 var tween2: Tween
+var tweenTeleport: Tween
 
 
 func _ready():
@@ -237,16 +238,16 @@ func teleport(leaving: bool = true):
 	if GameInformation.is_debug_mode():
 		next_level()
 	else:
-		if tween != null:
-			tween.kill()
+		if tweenTeleport != null:
+			tweenTeleport.kill()
 
-		tween = create_tween()
+		tweenTeleport = create_tween()
 		if leaving:
-			tween.tween_method(set_shader_progress, 0.0, 0.5, 2)
-			tween.connect("finished", next_level)
+			tweenTeleport.tween_method(set_shader_progress, 0.0, 0.5, 2)
+			tweenTeleport.connect("finished", next_level)
 		else:
-			tween.tween_method(set_shader_progress, 1.0, 0.0, 2)
-			tween.connect("finished", activate)
+			tweenTeleport.tween_method(set_shader_progress, 1.0, 0.0, 2)
+			tweenTeleport.connect("finished", activate)
 			await get_tree().create_timer(1.2).timeout
 		$TeleportSound.play()
 
@@ -265,5 +266,8 @@ func _on_tree_exiting():
 
 	if tween2 != null:
 			tween2.kill()
+
+	if tweenTeleport != null:
+			tweenTeleport.kill()
 
 	$TeleportSound.stop()
