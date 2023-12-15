@@ -5,11 +5,11 @@ const JUMP_VELOCITY = 600.0
 const PUSH_FORCE = 60.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
-var block_deceleration : bool = false
-var external_gravity : bool = false
-var currentAngle : float = 0
+var block_deceleration: bool = false
+var external_gravity: bool = false
+var currentAngle: float = 0
 var state: String = "Idle"
-var animation_playback : AnimationNodeStateMachinePlayback
+var animation_playback: AnimationNodeStateMachinePlayback
 var direction: float = 0
 var active: bool = true
 
@@ -19,7 +19,7 @@ func _ready():
 	animation_playback = $AnimationTree["parameters/playback"]
 	$AnimationTree.active = true
 	$PlayerSprite.material.set_shader_parameter("progress", 0)
-	
+
 	if GameInformation.is_debug_mode():
 		active = true
 	else:
@@ -122,8 +122,12 @@ func rotate_player(newUpDirection: Vector2):
 	var angle = $TopRayCast.target_position.angle_to(newUpDirection)
 	if angle != currentAngle:
 		currentAngle = angle
-		var tween = create_tween()
+		$CollisionShape2D.scale = Vector2(0.3, 0.3)
+		
+		var tween = create_tween().parallel()
 		tween.tween_property(self, "rotation", angle, 0.3)
+		var tween2 = create_tween().parallel()
+		tween2.tween_property($CollisionShape2D, "scale", Vector2(1, 1), 0.3)
 
 
 ## Update up direction if the gravity is no changed by externals origins

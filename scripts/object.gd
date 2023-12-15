@@ -50,5 +50,5 @@ func set_global_gravity():
 	change_up_direction(GravityInformation.get_up_direction())
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	$HitSound.play()
