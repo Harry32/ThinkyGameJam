@@ -95,3 +95,9 @@ func play_animation(up: bool):
 
 func stop_animation():
 	$AnimatedSprite.stop()
+
+
+func _on_tree_exiting():
+	if tween != null:
+		tween.kill()
+	$UpdateSound.stop()

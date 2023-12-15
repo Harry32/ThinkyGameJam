@@ -12,6 +12,8 @@ var state: String = "Idle"
 var animation_playback: AnimationNodeStateMachinePlayback
 var direction: float = 0
 var active: bool = true
+var tween: Tween
+var tween2: Tween
 
 
 func _ready():
@@ -123,10 +125,17 @@ func rotate_player(newUpDirection: Vector2):
 	if angle != currentAngle:
 		currentAngle = angle
 		$CollisionShape2D.scale = Vector2(0.3, 0.3)
-		
-		var tween = create_tween().parallel()
+
+		if tween != null:
+			tween.kill()
+
+		if tween2 != null:
+			tween2.kill()
+
+		tween = create_tween().parallel()
 		tween.tween_property(self, "rotation", angle, 0.3)
-		var tween2 = create_tween().parallel()
+
+		tween2 = create_tween().parallel()
 		tween2.tween_property($CollisionShape2D, "scale", Vector2(1, 1), 0.3)
 
 
@@ -228,7 +237,10 @@ func teleport(leaving: bool = true):
 	if GameInformation.is_debug_mode():
 		next_level()
 	else:
-		var tween = create_tween()
+		if tween != null:
+			tween.kill()
+
+		tween = create_tween()
 		if leaving:
 			tween.tween_method(set_shader_progress, 0.0, 0.5, 2)
 			tween.connect("finished", next_level)
@@ -245,3 +257,13 @@ func set_shader_progress(progress: float):
 
 func next_level():
 	LevelsInformation.next_level()
+
+
+func _on_tree_exiting():
+	if tween != null:
+			tween.kill()
+
+	if tween2 != null:
+			tween2.kill()
+
+	$TeleportSound.stop()

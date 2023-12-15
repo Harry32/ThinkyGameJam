@@ -8,6 +8,9 @@ var rightOccluderOpenPosition: Vector2
 var isTurnedOn: bool = false
 var player: CharacterBody2D
 var upDirection: Vector2
+var tweenL: Tween
+var tweenR: Tween
+var tween: Tween
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,10 +49,16 @@ func _on_area_2d_body_exited(_body):
 
 
 func toggle_teleporter(leftOccluderPosition: Vector2, rightOccluderPosition: Vector2):
-	var tween = create_tween().parallel()
-	tween.tween_property($RightLightOccluder, "position", rightOccluderPosition, 2)
-	var tween2 = create_tween().parallel()
-	tween2.tween_property($LeftLightOccluder, "position", leftOccluderPosition, 2)
+	if tweenR != null:
+		tweenR.kill()
+
+	if tweenL != null:
+		tweenL.kill()
+
+	tweenR = create_tween().parallel()
+	tweenR.tween_property($RightLightOccluder, "position", rightOccluderPosition, 2)
+	tweenL = create_tween().parallel()
+	tweenL.tween_property($LeftLightOccluder, "position", leftOccluderPosition, 2)
 
 
 func _on_teleport_area_body_entered(body):
@@ -63,7 +72,10 @@ func _on_teleport_area_body_entered(body):
 	if GameInformation.is_debug_mode():
 		activate_teleport()
 	else:
-		var tween = create_tween().parallel()
+		if tween != null:
+			tween.kill()
+		
+		tween = create_tween().parallel()
 		tween.tween_property($FrontPointLight, "energy", 5, 2)
 		tween.connect("finished", activate_teleport)
 		$EffectSound.play()
@@ -71,3 +83,16 @@ func _on_teleport_area_body_entered(body):
 
 func activate_teleport():
 	player.teleport()
+
+
+func _on_tree_exiting():
+	if tween != null:
+		tween.kill()
+
+	if tweenR != null:
+		tweenR.kill()
+
+	if tweenL != null:
+		tweenL.kill()
+
+	$EffectSound.stop()

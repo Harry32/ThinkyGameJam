@@ -7,6 +7,7 @@ var pressedColor: Color = Color("#88ba55")
 var notPressedColor: Color = Color("#fa7e71")
 var colliderStartPosition: Vector2
 var colliderEndPosition: Vector2
+var tween: Tween
 
 func _ready():
 	colliderStartPosition = $ButtonCollisionShape.position
@@ -17,7 +18,11 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	if body is RigidBody2D and body.name == "Box":
 		$ButtonAnimatedSprite.play()
-		var tween = create_tween()
+
+		if tween != null:
+			tween.kill()
+
+		tween = create_tween()
 		tween.tween_property($ButtonCollisionShape, "position", colliderEndPosition, 0.5)
 		$PressSound.play()
 		door.open()
@@ -27,7 +32,17 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body is RigidBody2D and body.name == "Box":
 		$ButtonAnimatedSprite.play_backwards()
-		var tween = create_tween()
+
+		if tween != null:
+			tween.kill()
+
+		tween = create_tween()
 		tween.tween_property($ButtonCollisionShape, "position", colliderStartPosition, 1)
 		$PressSound.play()
 		door.close()
+
+
+func _on_tree_exiting():
+	if tween != null:
+			tween.kill()
+	$PressSound.stop()
