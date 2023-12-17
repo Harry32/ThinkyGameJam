@@ -126,87 +126,94 @@ text = "Assets"
 
 [node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Craftpix Industrial Set"
 underline = 2
 uri = "https://free-game-assets.itch.io/free-industrial-zone-tileset-pixel-art"
 
 [node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Craftpix Doors and Potals"
 underline = 2
 uri = "https://free-game-assets.itch.io/doors-and-portals-pixel-art-asset-pack"
 
 [node name="LinkButton3" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Craftpix Lab Set"
 underline = 2
 uri = "https://free-game-assets.itch.io/lab-game-tileset-pixel-art"
 
 [node name="LinkButton4" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Mucho Pixels Character Animation"
 underline = 2
 uri = "https://muchopixels.itch.io/character-animation-asset-pack"
 
 [node name="LinkButton5" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Kenny Input Prompts"
 underline = 2
 uri = "https://www.kenney.nl/assets/input-prompts-pixel-16"
 
 [node name="LinkButton6" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Kenny Interface Sounds"
 underline = 2
 uri = "https://www.kenney.nl/assets/interface-sounds"
 
 [node name="LinkButton7" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Deep Fold Pixel Planet Generator"
 underline = 2
 uri = "https://deep-fold.itch.io/pixel-planet-generator"
 
 [node name="LinkButton8" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "JDSherbert UI SFX Pack"
 underline = 2
 uri = "https://jdsherbert.itch.io/ultimate-ui-sfx-pack"
 
 [node name="LinkButton9" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Gregor Quendel Cinematic SFX"
 underline = 2
 uri = "https://gregor-quendel.itch.io/free-cinematic-sound-effects"
 
 [node name="LinkButton10" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Dustyroom Casual Game Sounds  "
 underline = 2
 uri = "https://dustyroom.com/free-casual-game-sounds/"
 
 [node name="LinkButton11" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "pend00 Teleport effect"
 underline = 2
 uri = "https://godotshaders.com/shader/teleport-effect/"
 
 [node name="LinkButton12" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 40
 text = "Piiixl Space"
 underline = 2
 uri = "https://piiixl.itch.io/space"
+
+[node name="LinkButton13" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Alkakrab Sci-Fi Music Pack"
+underline = 2
+uri = "https://alkakrab.itch.io/free-sci-fi-game-music-pack"
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2

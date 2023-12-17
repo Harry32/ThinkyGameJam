@@ -17,13 +17,18 @@ func _input(event):
 		LevelsInformation.restart_level()
 
 
-func change_scene(scene: String, showInstructions: bool):
+func change_scene(scene: String, showInstructions: bool, music: String):
 	$PauseScreen.hide()
-	if get_child_count() > 2:
-		get_child(2).queue_free()
+	if get_child_count() > 3:
+		get_child(3).queue_free()
 	call_deferred("add_child", load(scene).instantiate())
 
 	if showInstructions:
 		$Instruction.show()
 	else:
 		$Instruction.hide()
+
+	if $AudioStreamPlayer.stream.resource_path != music:
+		$AudioStreamPlayer.stop()
+		$AudioStreamPlayer.stream = load(music)
+		$AudioStreamPlayer.play()
