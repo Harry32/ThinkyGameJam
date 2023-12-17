@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cauiqig3w4olo"]
+[gd_scene load_steps=5 format=3 uid="uid://cauiqig3w4olo"]
 
 [ext_resource type="Texture2D" uid="uid://de66buqmg0y4o" path="res://graphics/backgrounds/Background.png" id="1_tea18"]
 [ext_resource type="Theme" uid="uid://lpfisjaosrqq" path="res://scenes/ui/default_theme.tres" id="1_yoybp"]
 [ext_resource type="Script" path="res://scripts/credits_screen.gd" id="2_78s6q"]
+[ext_resource type="FontFile" uid="uid://ctoins8y01jnt" path="res://graphics/fonts/FutureMillennium Italic.ttf" id="4_l1e7m"]
 
 [node name="CreditsScreen" type="Control"]
 layout_mode = 3
@@ -99,9 +100,18 @@ theme_override_font_sizes/font_size = 40
 text = "Maria Carolina
 Mayara Machado
 João Pedro
-Verena
+Verena Calmon
 Yago Oliveira
-Gabriel dos Santos"
+Gabriel dos Santos
+"
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("4_l1e7m")
+theme_override_font_sizes/font_size = 30
+text = "We are very grateful for your help in
+testing the game"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
