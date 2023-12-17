@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://m7vhdgdldirk"]
+[gd_scene load_steps=4 format=3 uid="uid://m7vhdgdldirk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_eh23n"]
+[ext_resource type="PackedScene" uid="uid://buux3qlm27xb2" path="res://scenes/ui/instruction.tscn" id="2_ssdpc"]
 [ext_resource type="PackedScene" uid="uid://bhoiqqokfqnm7" path="res://scenes/ui/pause_screen.tscn" id="3_7sdjp"]
 
 [node name="Game" type="Node"]
 process_mode = 3
 script = ExtResource("1_eh23n")
+
+[node name="Instruction" parent="." instance=ExtResource("2_ssdpc")]
 
 [node name="PauseScreen" parent="." instance=ExtResource("3_7sdjp")]

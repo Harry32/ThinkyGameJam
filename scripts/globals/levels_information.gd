@@ -1,7 +1,7 @@
 extends Node
 
 
-signal change_scene(scene: String)
+signal change_scene(scene: String, showInstructions: bool)
 
 
 var levels : Array[String] = [
@@ -30,7 +30,7 @@ func next_level():
 	if current_level < levels.size() -1:
 		current_level += 1
 		current_scene = levels[current_level]
-		change_scene.emit(levels[current_level])
+		change_scene.emit(levels[current_level], true)
 	else:
 		credits_screen()
 
@@ -39,32 +39,32 @@ func previous_level():
 	if current_level > 0:
 		current_level -= 1
 		current_scene = levels[current_level]
-		change_scene.emit(levels[current_level])
+		change_scene.emit(levels[current_level], true)
 
 
 func start_game():
 	current_level = 0
 	current_scene = levels[current_level]
-	change_scene.emit(current_scene)
+	change_scene.emit(current_scene, true)
 
 
 func start_screen():
 	current_scene = main_screen
-	change_scene.emit(main_screen)
+	change_scene.emit(main_screen,false)
 
 
 func credits_screen():
 	current_scene = credit_screen
-	change_scene.emit(credit_screen)
+	change_scene.emit(credit_screen, false)
 
 
 func restart_level():
-	change_scene.emit(current_scene)
+	change_scene.emit(current_scene, false)
 
 
-func change_screen(scene: String):
+func change_screen(scene: String, showInstructions: bool = false):
 	current_scene = scene
-	change_scene.emit(scene)
+	change_scene.emit(scene, showInstructions)
 
 
 func enable_ui():

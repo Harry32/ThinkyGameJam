@@ -17,8 +17,13 @@ func _input(event):
 		LevelsInformation.restart_level()
 
 
-func change_scene(scene: String):
+func change_scene(scene: String, showInstructions: bool):
 	$PauseScreen.hide()
-	if get_child_count() > 1:
-		get_child(1).queue_free()
+	if get_child_count() > 2:
+		get_child(2).queue_free()
 	call_deferred("add_child", load(scene).instantiate())
+
+	if showInstructions:
+		$Instruction.show()
+	else:
+		$Instruction.hide()

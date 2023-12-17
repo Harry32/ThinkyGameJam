@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://buux3qlm27xb2"]
+
+[ext_resource type="Theme" uid="uid://lpfisjaosrqq" path="res://scenes/ui/default_theme.tres" id="1_dx0rl"]
+[ext_resource type="Texture2D" uid="uid://5p5ctwsj23v8" path="res://graphics/ui/Input Key - R.png" id="2_2485j"]
+[ext_resource type="Texture2D" uid="uid://32jxawpu7njy" path="res://graphics/ui/Input Key - Esc.png" id="3_ekmfd"]
+
+[node name="Instruction" type="CanvasLayer"]
+visible = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_dx0rl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+offset_top = 996.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="RRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_2485j")
+stretch_mode = 4
+
+[node name="RLabel" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 30
+text = "Restart Game"
+
+[node name="EscTexture" type="TextureRect" parent="Control/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("3_ekmfd")
+stretch_mode = 4
+
+[node name="EscLabel" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 30
+text = "Pause"
