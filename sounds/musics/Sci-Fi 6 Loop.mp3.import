@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Sci-Fi 6 Loop.mp3-ee43980d0e65f62a82becacca02
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
