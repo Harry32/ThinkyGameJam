@@ -22,6 +22,7 @@ var levels : Array[String] = [
 ]
 
 var main_screen: String = "res://scenes/screens/main_screen.tscn"
+var credit_screen: String = "res://scenes/screens/credits_screen.tscn"
 var current_scene: String
 var current_level: int = 0
 
@@ -32,7 +33,7 @@ func next_level():
 		current_scene = levels[current_level]
 		change_scene.emit(levels[current_level])
 	else:
-		start_screen()
+		credits_screen()
 
 
 func previous_level():
@@ -51,6 +52,11 @@ func start_game():
 func start_screen():
 	current_scene = main_screen
 	change_scene.emit(main_screen)
+
+
+func credits_screen():
+	current_scene = credit_screen
+	change_scene.emit(credit_screen)
 
 
 func restart_level():

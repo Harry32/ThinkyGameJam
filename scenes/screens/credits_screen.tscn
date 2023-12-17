@@ -1,0 +1,183 @@
+[gd_scene load_steps=4 format=3 uid="uid://cauiqig3w4olo"]
+
+[ext_resource type="Texture2D" uid="uid://de66buqmg0y4o" path="res://graphics/backgrounds/Background.png" id="1_tea18"]
+[ext_resource type="Theme" uid="uid://lpfisjaosrqq" path="res://scenes/ui/default_theme.tres" id="1_yoybp"]
+[ext_resource type="Script" path="res://scripts/credits_screen.gd" id="2_78s6q"]
+
+[node name="CreditsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yoybp")
+script = ExtResource("2_78s6q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tea18")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 70
+text = "Development"
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Canola"
+underline = 2
+uri = "https://canoles.itch.io"
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Gabriel Arimatea"
+underline = 2
+uri = "https://gabriel-arimatea.itch.io"
+
+[node name="LinkButton3" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Harry"
+underline = 2
+uri = "https://harry32.itch.io/"
+
+[node name="LinkButton4" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Thasgol"
+underline = 2
+uri = "https://thasgol.itch.io"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Special Thanks"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 70
+text = "Assets"
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Craftpix Industrial Set"
+underline = 2
+uri = "https://free-game-assets.itch.io/free-industrial-zone-tileset-pixel-art"
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Craftpix Doors and Potals"
+underline = 2
+uri = "https://free-game-assets.itch.io/doors-and-portals-pixel-art-asset-pack"
+
+[node name="LinkButton3" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Craftpix Lab Set"
+underline = 2
+uri = "https://free-game-assets.itch.io/lab-game-tileset-pixel-art"
+
+[node name="LinkButton4" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Mucho Pixels Character Animation"
+underline = 2
+uri = "https://muchopixels.itch.io/character-animation-asset-pack"
+
+[node name="LinkButton5" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Kenny Input Prompts"
+underline = 2
+uri = "https://www.kenney.nl/assets/input-prompts-pixel-16"
+
+[node name="LinkButton6" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Kenny Interface Sounds"
+underline = 2
+uri = "https://www.kenney.nl/assets/interface-sounds"
+
+[node name="LinkButton7" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Deep Fold Pixel Planet Generator"
+underline = 2
+uri = "https://deep-fold.itch.io/pixel-planet-generator"
+
+[node name="LinkButton8" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "JDSherbert UI SFX Pack"
+underline = 2
+uri = "https://jdsherbert.itch.io/ultimate-ui-sfx-pack"
+
+[node name="LinkButton9" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Gregor Quendel Cinematic SFX"
+underline = 2
+uri = "https://gregor-quendel.itch.io/free-cinematic-sound-effects"
+
+[node name="LinkButton10" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Dustyroom Casual Game Sounds  "
+underline = 2
+uri = "https://dustyroom.com/free-casual-game-sounds/"
+
+[node name="LinkButton11" type="LinkButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "pend00 Teleport effect"
+underline = 2
+uri = "https://godotshaders.com/shader/teleport-effect/"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/Button" to="." method="_on_button_pressed"]

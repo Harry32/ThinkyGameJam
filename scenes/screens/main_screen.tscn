@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cov7lpg5n5qc6"]
 
+[ext_resource type="Theme" uid="uid://lpfisjaosrqq" path="res://scenes/ui/default_theme.tres" id="1_58dbj"]
 [ext_resource type="Script" path="res://scripts/main_screen.gd" id="1_ywyvh"]
 [ext_resource type="Texture2D" uid="uid://de66buqmg0y4o" path="res://graphics/backgrounds/Background.png" id="2_wc0qp"]
 [ext_resource type="FontFile" uid="uid://ctoins8y01jnt" path="res://graphics/fonts/FutureMillennium Italic.ttf" id="3_nwq1g"]
-[ext_resource type="FontFile" uid="uid://q0ai3wfelumn" path="res://graphics/fonts/FutureMillennium.ttf" id="4_3bnj4"]
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -13,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
+theme = ExtResource("1_58dbj")
 script = ExtResource("1_ywyvh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -38,9 +39,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/Controls"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Controls"]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/margin_bottom = 40
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Controls/MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("3_nwq1g")
 theme_override_font_sizes/font_size = 250
@@ -48,36 +56,37 @@ text = "Jo-Zeas"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="MarginContainer/Controls/MarginContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Gravity Adventure"
+horizontal_alignment = 1
+
 [node name="StartButton" type="Button" parent="MarginContainer/Controls"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("4_3bnj4")
-theme_override_font_sizes/font_size = 40
-text = "COMECE ESSA PORRA"
+text = "Start"
 
 [node name="OptionsButton" type="Button" parent="MarginContainer/Controls"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("4_3bnj4")
-theme_override_font_sizes/font_size = 40
-text = "OPTIONS NESSA PORRA"
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/Controls"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Credits"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/Controls"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("4_3bnj4")
-theme_override_font_sizes/font_size = 40
-text = "SAIR DESSA PORRA"
+text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/Controls/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Controls/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Controls/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Controls/QuitButton" to="." method="_on_quit_button_pressed"]
