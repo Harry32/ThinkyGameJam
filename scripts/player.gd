@@ -5,21 +5,20 @@ const JUMP_VELOCITY = 600.0
 const PUSH_FORCE = 60.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
-var block_deceleration : bool = false
-var external_gravity : bool = false
-var currentAngle : float = 0
-var state: String = "Idle"
-var animation_playback : AnimationNodeStateMachinePlayback
+var block_deceleration: bool = false
+var external_gravity: bool = false
+var currentAngle: float = 0
 var direction: float = 0
 var active: bool = true
+var tween: Tween
+var tweenTeleport: Tween
 
 
 func _ready():
 	GravityInformation.connect("up_direction_change", update_up_direction)
-	animation_playback = $AnimationTree["parameters/playback"]
 	$AnimationTree.active = true
 	$PlayerSprite.material.set_shader_parameter("progress", 0)
-	
+
 	if GameInformation.is_debug_mode():
 		active = true
 	else:
@@ -28,21 +27,14 @@ func _ready():
 
 
 func _process(_delta):
-	update_animation()
+	update_facing_direction()
 
 
 func _physics_process(delta):
 	if not is_on_floor():
 		calculate_gravity(delta)
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		jump()
-
-	if Input.is_action_pressed("Gravity") and active:
-		change_up_direction()
-	else:
-		movement()
-
+	movement()
 	move_and_slide()
 	calculate_push()
 
@@ -51,23 +43,6 @@ func _physics_process(delta):
 func calculate_gravity(delta):
 	velocity.y += gravity * (up_direction.y) * delta
 	velocity.x += gravity * (up_direction.x) * delta
-
-
-## Handle jump based on up_direction vector.
-func jump():
-		velocity.y = JUMP_VELOCITY * (up_direction.y)
-		velocity.x = JUMP_VELOCITY * (up_direction.x)
-		state = "Jump"
-
-
-## Change direction based on input.
-func change_up_direction():
-	state = "A.Power"
-	# I changed the order of these parameters to avoid calculations
-	var newUpDirection = Input.get_vector("Right", "Left", "Down", "Up")
-	if newUpDirection != Vector2.ZERO and newUpDirection != GravityInformation.get_up_direction():
-		if abs(newUpDirection.x) != abs(newUpDirection.y):
-			GravityInformation.update_up_direction(newUpDirection)
 
 
 ## Handle character movement.
@@ -122,8 +97,14 @@ func rotate_player(newUpDirection: Vector2):
 	var angle = $TopRayCast.target_position.angle_to(newUpDirection)
 	if angle != currentAngle:
 		currentAngle = angle
-		var tween = create_tween()
+		$CollisionShape2D.scale = Vector2(0.3, 0.3)
+
+		if tween != null:
+			tween.kill()
+
+		tween = create_tween().parallel()
 		tween.tween_property(self, "rotation", angle, 0.3)
+		tween.tween_property($CollisionShape2D, "scale", Vector2(1, 1), 0.3)
 
 
 ## Update up direction if the gravity is no changed by externals origins
@@ -143,50 +124,6 @@ func set_external_gravity(upDirection: Vector2):
 func set_global_gravity():
 	external_gravity = false
 	update_up_direction(GravityInformation.get_up_direction())
-
-
-func update_animation():
-	update_facing_direction()
-	
-	if active:
-		if is_on_floor():
-			if state == "Idle":
-				$AnimationTree.set("parameters/Move/blend_position", direction)
-
-			if state == "Fall" and ((GravityInformation.get_up_direction().y != 0 and velocity.y == 0) or (GravityInformation.get_up_direction().x != 0 and velocity.x == 0)):
-				state = "Landing"
-
-			if state == "Landing":
-				state = "Idle"
-				animation_playback.travel("Landing")
-
-		else:
-			if state == "Idle" and animation_playback.get_current_node() == "Move":
-				state = "Fall"
-				animation_playback.travel("Fall")
-			if state == "Fall":
-				animation_playback.travel("Fall")
-			if state == "Jump" and animation_playback.get_current_node() != "Jump":
-				animation_playback.travel("Jump")
-			if state == "Jump":
-				if (GravityInformation.get_up_direction().y < 0 and velocity.y > 0) or (GravityInformation.get_up_direction().y > 0 and velocity.y < 0) or (GravityInformation.get_up_direction().x < 0 and velocity.x > 0) or (GravityInformation.get_up_direction().x > 0 and velocity.x < 0):
-					state = "Fall"
-					animation_playback.travel("Fall")
-
-		if state == "A.Power":
-			state = "H.Power"
-			animation_playback.travel("Activating Power")
-
-		if state == "H.Power":
-			animation_playback.travel("Holding Power")
-
-		if (state == "D.Power" or state == "H.Power" or state == "A.Power") and not Input.is_action_pressed("Gravity"):
-			state = "Fall"
-			if is_on_floor():
-				state = "Idle"
-			animation_playback.travel("Deactivating Power")
-	else:
-		$AnimationTree.set("parameters/Move/blend_position", 0)
 
 
 func update_facing_direction():
@@ -224,13 +161,18 @@ func teleport(leaving: bool = true):
 	if GameInformation.is_debug_mode():
 		next_level()
 	else:
-		var tween = create_tween()
+		if tweenTeleport != null:
+			tweenTeleport.kill()
+
+		tweenTeleport = create_tween()
 		if leaving:
-			tween.tween_method(set_shader_progress, 0.0, 0.5, 2)
-			tween.connect("finished", next_level)
+			tweenTeleport.tween_method(set_shader_progress, 0.0, 0.5, 2)
+			tweenTeleport.connect("finished", next_level)
 		else:
-			tween.tween_method(set_shader_progress, 1.0, 0.0, 2)
-			tween.connect("finished", activate)
+			tweenTeleport.tween_method(set_shader_progress, 1.0, 0.0, 2)
+			tweenTeleport.connect("finished", activate)
+			await get_tree().create_timer(1.2).timeout
+		$TeleportSound.play()
 
 
 func set_shader_progress(progress: float):
@@ -239,3 +181,13 @@ func set_shader_progress(progress: float):
 
 func next_level():
 	LevelsInformation.next_level()
+
+
+func _on_tree_exiting():
+	if tween != null:
+			tween.kill()
+
+	if tweenTeleport != null:
+			tweenTeleport.kill()
+
+	$TeleportSound.stop()

@@ -48,3 +48,7 @@ func set_external_gravity(upDirection: Vector2):
 func set_global_gravity():
 	external_gravity = false
 	change_up_direction(GravityInformation.get_up_direction())
+
+
+func _on_area_2d_body_entered(_body):
+	$HitSound.play()

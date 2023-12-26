@@ -9,19 +9,21 @@ extends StaticBody2D
 ## Set the platform's start position
 @export var startDown : bool = false
 
-var currentWeight : float = 0;
-var originalPosition : Vector2
-var destinationPosition : Vector2
+var currentWeight: float = 0;
+var originalPosition: Vector2
+var destinationPosition: Vector2
 var movementPosition: Vector2
-
 var tween: Tween
+var soundIn: AudioStream = preload("res://sounds/sfx/DM-CGS-28.wav")
+var soundOut: AudioStream = preload("res://sounds/sfx/DM-CGS-30.wav")
 
 
 func _ready():
 	originalPosition = position
 	destinationPosition = Vector2(originalPosition.x, originalPosition.y + movementDistance)
 	movementPosition = position
-
+	$UpdateSound.stream = soundIn
+	
 	update_label(false)
 
 	if startDown:
@@ -40,6 +42,8 @@ func _on_area_2d_body_entered(body):
 		currentWeight += body.mass
 
 		update_label()
+		$UpdateSound.stream = soundIn
+		$UpdateSound.play()
 
 		if preWeight < necessaryWeigth and currentWeight >= necessaryWeigth:
 			if position != destinationPosition:
@@ -54,6 +58,8 @@ func _on_area_2d_body_exited(body):
 		currentWeight -= body.mass
 
 		update_label()
+		$UpdateSound.stream = soundOut
+		$UpdateSound.play()
 
 		if preWeight >= necessaryWeigth and currentWeight < necessaryWeigth:
 			if position != originalPosition:
@@ -89,3 +95,9 @@ func play_animation(up: bool):
 
 func stop_animation():
 	$AnimatedSprite.stop()
+
+
+func _on_tree_exiting():
+	if tween != null:
+		tween.kill()
+	$UpdateSound.stop()

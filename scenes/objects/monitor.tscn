@@ -68,3 +68,5 @@ sprite_frames = SubResource("SpriteFrames_7bsc6")
 autoplay = "default"
 frame = 1
 frame_progress = 0.475334
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgbwf7lu4akil"]
+[gd_scene load_steps=11 format=3 uid="uid://dgbwf7lu4akil"]
 
 [ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="1_r0cuf"]
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="2_ghq07"]
 [ext_resource type="PackedScene" uid="uid://dbbqs15a4bmc4" path="res://scenes/ui/controller_tips.tscn" id="3_h83ib"]
+[ext_resource type="PackedScene" uid="uid://4y5nyajcta5s" path="res://scenes/objects/ramp.tscn" id="4_euflr"]
 [ext_resource type="PackedScene" uid="uid://osp2udv5iiwm" path="res://scenes/objects/teleporter.tscn" id="4_q1cif"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lbnjl"]
@@ -59,14 +60,17 @@ position = Vector2(24, 704)
 shape = SubResource("SegmentShape2D_1oqsh")
 
 [node name="Checkpoint5" type="Area2D" parent="." index="9"]
-position = Vector2(1701, 894)
+position = Vector2(1668, 894)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint5" index="0"]
 position = Vector2(0, -10)
 shape = SubResource("SegmentShape2D_qut6p")
 
-[node name="Teleporter" parent="." index="10" instance=ExtResource("4_q1cif")]
-position = Vector2(1791, 940)
+[node name="Ramp" parent="." index="10" instance=ExtResource("4_euflr")]
+position = Vector2(1782, 1048)
+
+[node name="Teleporter" parent="." index="11" instance=ExtResource("4_q1cif")]
+position = Vector2(1782, 928)
 
 [connection signal="body_entered" from="Checkpoint1" to="." method="_on_checkpoint_1_body_entered"]
 [connection signal="body_entered" from="Checkpoint2" to="." method="_on_checkpoint_2_body_entered"]

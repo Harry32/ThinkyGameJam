@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://rlgyfwvht71v"]
+[gd_scene load_steps=15 format=3 uid="uid://rlgyfwvht71v"]
 
 [ext_resource type="Script" path="res://scripts/gravity_switch.gd" id="1_asktq"]
 [ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="1_dpxdo"]
 [ext_resource type="Script" path="res://scripts/switch_ball.gd" id="1_ll8h6"]
 [ext_resource type="Texture2D" uid="uid://dxinow0nu3td" path="res://graphics/objects/Gravity Switch (Back).png" id="2_ysjg2"]
 [ext_resource type="Texture2D" uid="uid://bj77wie8lw2n3" path="res://graphics/objects/Gravity Switch (Switch).png" id="4_0qvy5"]
+[ext_resource type="AudioStream" uid="uid://c2nlbeiling1a" path="res://sounds/sfx/impactMetal_heavy_000.ogg" id="5_dq8am"]
 [ext_resource type="Texture2D" uid="uid://clyp2sjndr6e8" path="res://graphics/objects/Gravity Switch (Glass).png" id="5_pm3e7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo8my"]
@@ -24,6 +25,9 @@ size = Vector2(50, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3v1g"]
 size = Vector2(15.7895, 15.7895)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxxo4"]
+size = Vector2(22, 26)
 
 [node name="GravitySwitch" type="StaticBody2D"]
 collision_layer = 4
@@ -78,9 +82,19 @@ position = Vector2(3.57628e-07, -3.57628e-07)
 scale = Vector2(1.52, 1.52)
 shape = SubResource("RectangleShape2D_g3v1g")
 
+[node name="Area2D" type="Area2D" parent="Switch"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch/Area2D"]
+shape = SubResource("RectangleShape2D_rxxo4")
+
 [node name="SwitchSprite" type="Sprite2D" parent="Switch"]
 scale = Vector2(2, 2)
 texture = ExtResource("4_0qvy5")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Switch"]
+stream = ExtResource("5_dq8am")
 
 [node name="GlassSprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -140,3 +154,4 @@ texture_scale = 2.0
 
 [connection signal="body_entered" from="OnArea" to="." method="_on_on_area_body_entered"]
 [connection signal="body_entered" from="OffArea" to="." method="_on_off_area_body_entered"]
+[connection signal="body_entered" from="Switch/Area2D" to="Switch" method="_on_area_2d_body_entered"]

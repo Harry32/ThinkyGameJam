@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://osp2udv5iiwm"]
+[gd_scene load_steps=16 format=3 uid="uid://osp2udv5iiwm"]
 
 [ext_resource type="Script" path="res://scripts/teleporter.gd" id="1_s32s7"]
 [ext_resource type="Texture2D" uid="uid://cprh0y0nuak1m" path="res://graphics/objects/Teleporter.png" id="1_seuci"]
 [ext_resource type="Texture2D" uid="uid://pamnw1lmiq5n" path="res://graphics/objects/Teleporter Beam.png" id="3_1d55p"]
+[ext_resource type="AudioStream" uid="uid://ba34pcqq7u7pt" path="res://sounds/sfx/Gregor Quendel - Designed Mecha - Sequences - Ambience 06 (Edited).mp3" id="4_hk7ou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg5gk"]
 size = Vector2(72, 24)
@@ -126,6 +127,11 @@ one_shot = true
 position = Vector2(0, -32)
 target_position = Vector2(0, -1)
 
+[node name="EffectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hk7ou")
+volume_db = -15.0
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="TeleportArea" to="." method="_on_teleport_area_body_entered"]
 [connection signal="body_exited" from="TeleportArea" to="." method="_on_teleport_area_body_exited"]

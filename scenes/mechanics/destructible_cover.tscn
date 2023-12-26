@@ -1,10 +1,12 @@
-[gd_scene load_steps=29 format=3 uid="uid://bxr5pv4tcmwfk"]
+[gd_scene load_steps=31 format=3 uid="uid://bxr5pv4tcmwfk"]
 
 [ext_resource type="Script" path="res://scripts/destructible_cover.gd" id="1_4ic0g"]
 [ext_resource type="Texture2D" uid="uid://dfubpulrvc4vk" path="res://graphics/objects/Glass Silo.png" id="2_jcw1c"]
 [ext_resource type="Script" path="res://scripts/object.gd" id="2_t0ava"]
 [ext_resource type="Texture2D" uid="uid://c04a2td5j1rnf" path="res://graphics/circle.png" id="3_mgsla"]
 [ext_resource type="Texture2D" uid="uid://iwjoaaa0xd4b" path="res://graphics/objects/Silo Fragments.png" id="4_cy11p"]
+[ext_resource type="AudioStream" uid="uid://d2tivk16n4n0k" path="res://sounds/sfx/impactGlass_light_003.ogg" id="4_rpbga"]
+[ext_resource type="AudioStream" uid="uid://d07yaonxfm8qo" path="res://sounds/sfx/impactPlate_heavy_000.ogg" id="6_x7og2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr18e"]
 size = Vector2(74, 14)
@@ -215,6 +217,18 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-10, 22, -14, -13, 1, -17, 16, 4)
 metadata/_edit_lock_ = true
 
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment1"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment1/Area2D"]
+polygon = PackedVector2Array(-11, 24, -15, -14, 1, -18, 17, 4)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment1"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
+
 [node name="Fragment2" type="RigidBody2D" parent="Fragments"]
 position = Vector2(1, -35)
 collision_layer = 8
@@ -232,6 +246,18 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment2"]
 polygon = PackedVector2Array(-4, 11, -12.8662, 1.14872, -22, -9, 19, -9, 12, 6)
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment2"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment2/Area2D"]
+polygon = PackedVector2Array(-5, 12, -24, -10, 20, -10, 12, 7)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment2"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
 
 [node name="Fragment3" type="RigidBody2D" parent="Fragments"]
 position = Vector2(22, -32)
@@ -251,6 +277,18 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-25, 12, -4, 1, 14, -17, 12, 18)
 metadata/_edit_lock_ = true
 
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment3"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment3/Area2D"]
+polygon = PackedVector2Array(-26, 12, -5, 0, 15, -19, 13, 19)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment3"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
+
 [node name="Fragment4" type="RigidBody2D" parent="Fragments"]
 position = Vector2(0, -9)
 collision_layer = 8
@@ -268,6 +306,18 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment4"]
 polygon = PackedVector2Array(-16, 11, -8, -8, 7, -6, 9, 8)
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment4"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment4/Area2D"]
+polygon = PackedVector2Array(-17, 12, -8, -9, 8, -7, 10, 9)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment4"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
 
 [node name="Fragment5" type="RigidBody2D" parent="Fragments"]
 position = Vector2(18, 4)
@@ -287,6 +337,18 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-9, 11, -9, -11, 6, -13, 11, -1)
 metadata/_edit_lock_ = true
 
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment5"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment5/Area2D"]
+polygon = PackedVector2Array(-10, 12, -10, -12, 7, -14, 12, 0)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment5"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
+
 [node name="Fragment6" type="RigidBody2D" parent="Fragments"]
 position = Vector2(-18, 19)
 collision_layer = 8
@@ -304,6 +366,18 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment6"]
 polygon = PackedVector2Array(-14, 3, 9, -17, 20, -5, 6, 11)
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment6"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment6/Area2D"]
+polygon = PackedVector2Array(-15, 3, 9, -18, 21, -5, 6, 12)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment6"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
 
 [node name="Fragment7" type="RigidBody2D" parent="Fragments"]
 position = Vector2(23, 21)
@@ -323,6 +397,18 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-19, 7, 7, -10, 10, 11, -2, 3)
 metadata/_edit_lock_ = true
 
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment7"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment7/Area2D"]
+polygon = PackedVector2Array(-21, 8, 8, -11, 11, 12, -3, 4)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment7"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
+
 [node name="Fragment8" type="RigidBody2D" parent="Fragments"]
 position = Vector2(32, 3)
 collision_layer = 8
@@ -340,6 +426,18 @@ metadata/_edit_lock_ = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fragments/Fragment8"]
 polygon = PackedVector2Array(-4, 6, -5, -13, 5, -8, 4, 6)
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="Fragments/Fragment8"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fragments/Fragment8/Area2D"]
+polygon = PackedVector2Array(-5, 7, -6, -14, 6, -8, 5, 7)
+metadata/_edit_lock_ = true
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Fragments/Fragment8"]
+stream = ExtResource("4_rpbga")
+volume_db = -15.0
 
 [node name="CoverAnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -367,4 +465,16 @@ scale_amount_max = 0.6
 color = Color(0.145098, 0.145098, 0.145098, 1)
 color_ramp = SubResource("Gradient_doxp8")
 
+[node name="DamageAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_x7og2")
+volume_db = -10.0
+
 [connection signal="body_entered" from="CoverHitArea" to="." method="_on_cover_hit_area_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment1/Area2D" to="Fragments/Fragment1" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment2/Area2D" to="Fragments/Fragment2" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment3/Area2D" to="Fragments/Fragment3" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment4/Area2D" to="Fragments/Fragment4" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment5/Area2D" to="Fragments/Fragment5" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment6/Area2D" to="Fragments/Fragment6" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment7/Area2D" to="Fragments/Fragment7" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Fragments/Fragment8/Area2D" to="Fragments/Fragment8" method="_on_area_2d_body_entered"]

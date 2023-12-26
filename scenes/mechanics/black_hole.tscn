@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://cqb6p78klute2"]
+[gd_scene load_steps=36 format=3 uid="uid://cqb6p78klute2"]
 
 [ext_resource type="Script" path="res://scripts/black_hole.gd" id="1_5ur3y"]
 [ext_resource type="Texture2D" uid="uid://bvn6dm1cba501" path="res://graphics/objects/Black Hole.png" id="2_l40x3"]
+[ext_resource type="AudioStream" uid="uid://dqkux1gcigecs" path="res://sounds/sfx/Gregor Quendel - Designed Sci-Fi - Subcycle.wav" id="3_1s223"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0riij"]
 atlas = ExtResource("2_l40x3")
@@ -240,6 +241,12 @@ frame_progress = 0.739267
 visible = false
 shape = SubResource("CircleShape2D_h7jhn")
 metadata/_edit_lock_ = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1s223")
+volume_db = 10.0
+autoplay = true
+max_distance = 300.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

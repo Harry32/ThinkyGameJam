@@ -8,10 +8,14 @@ var current_hits: int
 var animation_steps: Array[String] = ["Whole", "Hit 1", "Hit 2", "Broken"]
 var animation_current_step: int = 0
 var fragments_direction: Array[Vector2] = [Vector2(-1, 1)]
+var hitSound: AudioStream = preload("res://sounds/sfx/impactPlate_heavy_000.ogg")
+var explosionSound: AudioStream = preload("res://sounds/sfx/DM-CGS-48.wav")
 
 
 func _ready():
 	$CoverAnimatedSprite.set_animation("Whole")
+	$DamageAudio.stream = hitSound
+	$DamageAudio.volume_db = -10
 	
 	if hits_to_break < 3:
 		for i in range(0, 3 - hits_to_break):
@@ -29,6 +33,9 @@ func _on_cover_hit_area_body_entered(body):
 			$GlassCollisionShape.queue_free()
 			$CoverHitArea.queue_free()
 			$CPUParticles2D.emitting = true
+			$DamageAudio.stream = explosionSound
+			$DamageAudio.volume_db = -5
+			$DamageAudio.play()
 			activate_fragments()
 
 			body.apply_central_impulse(position.direction_to(body.position) * body.get_velocity())
@@ -37,6 +44,8 @@ func _on_cover_hit_area_body_entered(body):
 
 ## Play the needed animation
 func play_hit_animation():
+	if not $Fragments.visible:
+		$DamageAudio.play()
 	animation_current_step += 1
 	$CoverAnimatedSprite.play(animation_steps[animation_current_step])
 

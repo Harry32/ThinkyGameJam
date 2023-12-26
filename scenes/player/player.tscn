@@ -1,8 +1,17 @@
-[gd_scene load_steps=52 format=3 uid="uid://crdgt41diya2q"]
+[gd_scene load_steps=61 format=3 uid="uid://crdgt41diya2q"]
 
 [ext_resource type="Shader" path="res://shaders/teleport.gdshader" id="1_2t4yd"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_q8xoc"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_todwo"]
 [ext_resource type="Texture2D" uid="uid://co6sh02stk713" path="res://graphics/player/Player Set.png" id="2_blbdj"]
+[ext_resource type="AudioStream" uid="uid://dfax4s7leqtqs" path="res://sounds/sfx/DM-CGS-33.wav" id="4_yy7vu"]
+[ext_resource type="PackedScene" uid="uid://dimhbgkbtrlx8" path="res://scenes/control/state_machine.tscn" id="5_qqgfb"]
+[ext_resource type="Script" path="res://scripts/control/ground_state.gd" id="6_3gccq"]
+[ext_resource type="Script" path="res://scripts/control/jump_state.gd" id="7_ednml"]
+[ext_resource type="Script" path="res://scripts/control/fall_state.gd" id="8_or80g"]
+[ext_resource type="Script" path="res://scripts/control/landing_state.gd" id="9_3wsdq"]
+[ext_resource type="Script" path="res://scripts/control/apower_state.gd" id="10_jlhjp"]
+[ext_resource type="Script" path="res://scripts/control/hpower_state.gd" id="11_t5fxg"]
+[ext_resource type="Script" path="res://scripts/control/dpower_state.gd" id="12_6j4ar"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n3owq"]
 polygon = PackedVector2Array(-13, 39, -13, 2, -6, -8, 8, -8, 13, 0, 13, 41, 0, 56)
@@ -526,7 +535,7 @@ height = 86.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
-script = ExtResource("1_q8xoc")
+script = ExtResource("1_todwo")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_n3owq")
@@ -559,6 +568,41 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = -0.387555
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 30)
 shape = SubResource("CapsuleShape2D_b1jny")
+
+[node name="TeleportSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yy7vu")
+volume_db = -15.0
+pitch_scale = 0.6
+
+[node name="AudioListener" type="AudioListener2D" parent="."]
+current = true
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("character", "animationTree", "currentState") instance=ExtResource("5_qqgfb")]
+character = NodePath("..")
+animationTree = NodePath("../AnimationTree")
+currentState = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="StateMachine"]
+script = ExtResource("6_3gccq")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("7_ednml")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("8_or80g")
+
+[node name="Landing" type="Node" parent="StateMachine"]
+script = ExtResource("9_3wsdq")
+
+[node name="APower" type="Node" parent="StateMachine"]
+script = ExtResource("10_jlhjp")
+
+[node name="HPower" type="Node" parent="StateMachine"]
+script = ExtResource("11_t5fxg")
+
+[node name="DPower" type="Node" parent="StateMachine"]
+script = ExtResource("12_6j4ar")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
