@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpcipxx5w5ny6"]
+[gd_scene load_steps=3 format=3 uid="uid://bpcipxx5w5ny6"]
 
 [ext_resource type="PackedScene" uid="uid://c8y7wph201vx4" path="res://scenes/levels/level.tscn" id="1_bryci"]
 [ext_resource type="PackedScene" uid="uid://osp2udv5iiwm" path="res://scenes/objects/teleporter.tscn" id="2_dpbl4"]
-[ext_resource type="PackedScene" uid="uid://dguxwd8kbvmuh" path="res://scenes/objects/box.tscn" id="3_mamo1"]
-[ext_resource type="PackedScene" uid="uid://rlgyfwvht71v" path="res://scenes/mechanics/gravity_switch.tscn" id="4_artkq"]
-[ext_resource type="PackedScene" uid="uid://vstxymajgmdd" path="res://scenes/mechanics/door.tscn" id="5_nlpxw"]
 
 [node name="LevelTeste" instance=ExtResource("1_bryci")]
 
@@ -13,15 +10,3 @@ position = Vector2(225, 947)
 
 [node name="Teleporter" parent="." index="4" instance=ExtResource("2_dpbl4")]
 position = Vector2(1696, 939)
-
-[node name="Box" parent="." index="5" instance=ExtResource("3_mamo1")]
-position = Vector2(807, 640)
-
-[node name="GravitySwitch" parent="." index="6" node_paths=PackedStringArray("door") instance=ExtResource("4_artkq")]
-position = Vector2(411, 524)
-door = NodePath("../Door")
-
-[node name="Door" parent="." index="7" instance=ExtResource("5_nlpxw")]
-position = Vector2(1279, 369)
-
-[connection signal="body_entered" from="Box" to="Box" method="_on_body_entered"]
