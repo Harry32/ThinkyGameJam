@@ -11,7 +11,7 @@ func enter():
 
 func state_physics_process(_delta: float):
 	if targetCharacter.active:
-		var up_direction = GravityInformation.get_up_direction()
+		var up_direction = GravityInformation.get_up_direction(targetCharacter.name)
 		var velocity = targetCharacter.velocity
 
 		if (up_direction.y < 0 and velocity.y > 0) or (up_direction.y > 0 and velocity.y < 0) or (up_direction.x < 0 and velocity.x > 0) or (up_direction.x > 0 and velocity.x < 0):

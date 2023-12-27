@@ -2,7 +2,6 @@ extends RigidBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
 var gravity_vector: Vector2 = Vector2(0, 0)
-var external_gravity : bool = false
 var teleportPosition: Vector2
 var previous_velocity: float
 var actual_velocity: float
@@ -33,21 +32,11 @@ func get_velocity():
 
 
 ## Update up direction if the gravity is no changed by externals origins
-func change_up_direction(upDirection: Vector2):
-	if not external_gravity:
+func change_up_direction(targetName: String):
+	if targetName == "" or targetName == self.name:
+		var upDirection = GravityInformation.get_up_direction(self.name)
+
 		gravity_vector = gravity * mass * upDirection
-
-
-## Update direction and mark as external gravity
-func set_external_gravity(upDirection: Vector2):
-	change_up_direction(upDirection)
-	external_gravity = true
-
-
-## Mark as global gravity and update direction
-func set_global_gravity():
-	external_gravity = false
-	change_up_direction(GravityInformation.get_up_direction())
 
 
 func _on_area_2d_body_entered(_body):

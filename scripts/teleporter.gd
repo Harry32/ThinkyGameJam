@@ -64,7 +64,7 @@ func toggle_teleporter(leftOccluderPosition: Vector2, rightOccluderPosition: Vec
 func _on_teleport_area_body_entered(body):
 	player = body
 
-	if GravityInformation.get_up_direction() != upDirection:
+	if GravityInformation.get_up_direction(self.name) != upDirection:
 		GravityInformation.update_up_direction(upDirection)
 
 	player.move_to(position)

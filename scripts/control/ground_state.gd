@@ -27,5 +27,7 @@ func state_physics_process(_delta: float):
 
 
 func jump():
-	targetCharacter.velocity.y = targetCharacter.JUMP_VELOCITY * (GravityInformation.get_up_direction().y)
-	targetCharacter.velocity.x = targetCharacter.JUMP_VELOCITY * (GravityInformation.get_up_direction().x)
+	var upDirection = GravityInformation.get_up_direction(targetCharacter.name)
+
+	targetCharacter.velocity.y = targetCharacter.JUMP_VELOCITY * (upDirection.y)
+	targetCharacter.velocity.x = targetCharacter.JUMP_VELOCITY * (upDirection.x)

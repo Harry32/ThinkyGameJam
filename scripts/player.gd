@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 const SPEED = 500.0
+const FRICTION = 50.0
 const JUMP_VELOCITY = 600.0
 const PUSH_FORCE = 60.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * -1
-var block_deceleration: bool = false
-var external_gravity: bool = false
+var externalGravity: bool = false
 var currentAngle: float = 0
 var direction: float = 0
 var active: bool = true
@@ -47,32 +47,46 @@ func calculate_gravity(delta):
 
 ## Handle character movement.
 func movement():
-	if active:
-		# Get the input direction and handle the movement/deceleration
-		direction = Input.get_axis("Left", "Right")
-		var direction_vertical_movement = 1
-
-		if up_direction.y != 0:
-			if direction:
-				velocity.x = direction * SPEED
-			else:
-				if not block_deceleration:
-					velocity.x = move_toward(velocity.x, 0, SPEED)
-		else:
-			if up_direction == Vector2.LEFT:
-				direction_vertical_movement = -1
-			else:
-				direction_vertical_movement = 1
-
-			if direction:
-				velocity.y = direction * direction_vertical_movement * SPEED
-			else:
-				if not block_deceleration:
-					velocity.y = move_toward(velocity.y, 0, SPEED)
-	else:
+	if not active:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+	if not Input.is_action_pressed("Gravity"):
+		direction = Input.get_axis("Left", "Right")
+
+	if up_direction.y != 0:
+		horizontal_movement()
+	else:
+		vertical_movement()
+
+
+func horizontal_movement():
+	if direction:
+		velocity.x = direction * SPEED
+
+	else:
+		if not externalGravity:
+			velocity.x = move_toward(velocity.x, 0, get_deceleration_speed())
+
+
+func vertical_movement():
+	var direction_vertical_movement = 1
+
+	if up_direction == Vector2.LEFT:
+		direction_vertical_movement = -1
+
+	if direction:
+		velocity.y = direction * direction_vertical_movement * SPEED
+	else:
+		if not externalGravity:
+			velocity.y = move_toward(velocity.y, 0, get_deceleration_speed())
+
+
+func get_deceleration_speed() -> float:
+	if is_on_floor():
+		return SPEED
+
+	return FRICTION
 
 ## Calculate push force on RigidBody2d objects that the player collide with
 func calculate_push():
@@ -84,7 +98,7 @@ func calculate_push():
 
 ## Toggle external gravity flag
 func toggle_external_gravity():
-	block_deceleration = not block_deceleration
+	externalGravity = not externalGravity
 
 
 ## Simulate RigidBody2d apply_central_impulse function
@@ -108,30 +122,17 @@ func rotate_player(newUpDirection: Vector2):
 
 
 ## Update up direction if the gravity is no changed by externals origins
-func update_up_direction(upDirection: Vector2):
-	if not external_gravity:
+func update_up_direction(targetName: String):
+	if targetName == "" or targetName == self.name:
+		var upDirection = GravityInformation.get_up_direction(self.name)
+
 		set_up_direction(upDirection)
 		rotate_player(upDirection)
 
 
-## Update direction and mark as external gravity
-func set_external_gravity(upDirection: Vector2):
-	update_up_direction(upDirection)
-	external_gravity = true
-
-
-## Mark as global gravity and update direction
-func set_global_gravity():
-	external_gravity = false
-	update_up_direction(GravityInformation.get_up_direction())
-
-
 func update_facing_direction():
 	if direction != 0:
-		var upDirection: Vector2 = GravityInformation.get_up_direction()
-		
-		if external_gravity:
-			upDirection = up_direction
+		var upDirection: Vector2 = GravityInformation.get_up_direction(self.name)
 
 		if upDirection != Vector2.DOWN:
 			$PlayerSprite.flip_h = direction < 0
@@ -142,10 +143,12 @@ func update_facing_direction():
 func move_to(movement_position: Vector2):
 	deactivate()
 
-	if GravityInformation.get_up_direction().x == 0:
+	var upDirection = GravityInformation.get_up_direction(self.name)
+
+	if upDirection.x == 0:
 		position.x = move_toward(position.x, movement_position.x, SPEED)
 
-	if GravityInformation.get_up_direction().y == 0:
+	if upDirection.y == 0:
 		position.y = move_toward(position.y, movement_position.y, SPEED)
 
 
